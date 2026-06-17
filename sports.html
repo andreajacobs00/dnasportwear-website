@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sport Galleries | DNA Sportswear</title>
+  <meta name="description" content="Browse our custom teamwear galleries — rugby, athletics, cricket and soccer kit built for real clubs." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red:      '#e8132a',
+              dark:     '#111111',
+              black:    '#0a0a0a',
+              charcoal: '#1a1a1a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-red:      #e8132a;
+      --color-dark:     #111111;
+      --color-black:    #0a0a0a;
+      --color-charcoal: #1a1a1a;
+      --color-grey:     #888;
+      --font-display:   'Gotham', sans-serif;
+      --font-body:      'Arial', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--color-black);
+      color: #fff;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.9rem 0;
+    }
+    .max-w { max-width: 1200px; margin: 0 auto; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--color-red); }
+    .nav-link {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--color-red);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 0.55rem 1.3rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c4101f; }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: rgba(10,10,10,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 1.5rem 4.5rem;
+      background: var(--color-charcoal);
+      border-bottom: 2px solid var(--color-red);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: 'SPORT';
+      position: absolute;
+      right: -1rem;
+      bottom: -1.5rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(6rem, 18vw, 14rem);
+      color: rgba(232,19,42,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .section-title span { color: var(--color-red); }
+    .red-line {
+      width: 2.5rem;
+      height: 3px;
+      background: var(--color-red);
+      margin: 1rem 0 1.5rem;
+    }
+    .text-grey { color: var(--color-grey); }
+
+    /* ── SPORT CARDS ── */
+    .sports-section {
+      padding: 4rem 1.5rem 5rem;
+    }
+    .sports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .sport-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 2rem 2rem;
+      background: var(--color-black);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+      min-height: 280px;
+    }
+    .sport-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px; width: 0;
+      background: var(--color-red);
+      transition: width 0.3s ease;
+    }
+    .sport-card:hover { background: var(--color-charcoal); }
+    .sport-card:hover::before { width: 100%; }
+
+    .sport-card-watermark {
+      position: absolute;
+      bottom: -1rem;
+      right: -0.5rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4rem, 8vw, 6.5rem);
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+      transition: color 0.3s;
+    }
+    .sport-card:hover .sport-card-watermark {
+      color: rgba(232,19,42,0.07);
+    }
+
+    .sport-card-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .sport-card-tag {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      margin-bottom: 0.4rem;
+    }
+    .sport-card-name {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .sport-card-desc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--color-grey);
+      line-height: 1.65;
+      max-width: 260px;
+    }
+    .sport-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .sport-card-items {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .sport-card-arrow {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .sport-card:hover .sport-card-arrow {
+      color: var(--color-red);
+      transform: translateX(4px);
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--color-charcoal);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem 1.5rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: #fff;
+      line-height: 1;
+      display: block;
+    }
+    .stat-num span { color: var(--color-red); }
+    .stat-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--color-red);
+      padding: 4rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,0.04) 20px,
+        rgba(0,0,0,0.04) 40px
+      );
+    }
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.05;
+      position: relative;
+    }
+    .cta-band p {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin: 0.75rem 0 1.75rem;
+      position: relative;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid #fff;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .btn-outline:hover { background: #fff; color: var(--color-red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--color-charcoal);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--color-red); }
+    .footer-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .footer-link {
+      display: block;
+      color: var(--color-grey);
+      font-size: 0.85rem;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #fff; }
+    .social-link {
+      width: 2rem; height: 2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
+
+    /* ── REVEAL ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    [data-reveal].visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 640px) {
+      .sports-grid { grid-template-columns: 1fr; }
+      .sport-card { min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="max-w flex items-center justify-between px-6">
+      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="sports.html"  class="nav-link" style="color:#fff;">Sports</a>
+        <a href="ranges.html"  class="nav-link">Ranges</a>
+        <a href="about.html"   class="nav-link">About</a>
+      </div>
+      <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="sports.html"  class="nav-link">Sports</a>
+    <a href="ranges.html"  class="nav-link">Ranges</a>
+    <a href="about.html"   class="nav-link">About</a>
+    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+  </div>
+
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="max-w px-6">
+      <span class="section-label">Custom Teamwear</span>
+      <h1 class="section-title">Our Sport<br><span>Galleries</span></h1>
+      <div class="red-line"></div>
+      <p class="text-grey" style="font-size:0.92rem;max-width:480px;line-height:1.7;">
+        Every piece below was built from scratch for a real club or athlete.
+        Pick your sport and see what we can do for your team.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ── SPORT CARDS ── -->
+  <section class="sports-section">
+    <div class="max-w" style="padding: 0 1.5rem; margin-bottom: 2rem;" data-reveal>
+      <span class="section-label">Browse by sport</span>
+      <h2 class="section-title" style="font-size: clamp(1.6rem,4vw,2.4rem);">Choose Your <span>Discipline</span></h2>
+      <div class="red-line"></div>
+    </div>
+
+    <div class="sports-grid" data-reveal>
+
+      <!-- RUGBY -->
+      <a href="rugby.html" class="sport-card">
+        <div>
+          <span class="sport-card-icon">🏉</span>
+          <div class="sport-card-tag">Gallery</div>
+          <div class="sport-card-name">Rugby</div>
+          <p class="sport-card-desc">
+            Match jerseys, shorts, hoodies and full squad kits — built tough for the contact game.
+          </p>
+        </div>
+        <div class="sport-card-footer">
+          <span class="sport-card-items">Jerseys · Shorts · Hoodies · Full Kits</span>
+          <span class="sport-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+        <span class="sport-card-watermark">Rugby</span>
+      </a>
+
+      <!-- ATHLETICS -->
+      <a href="athletics.html" class="sport-card">
+        <div>
+          <span class="sport-card-icon">🏃</span>
+          <div class="sport-card-tag">Gallery</div>
+          <div class="sport-card-name">Athletics</div>
+          <p class="sport-card-desc">
+            Lightweight singlets, vests, and club uniforms engineered for speed and competition.
+          </p>
+        </div>
+        <div class="sport-card-footer">
+          <span class="sport-card-items">Singlets · Vests · Shorts · Spandex</span>
+          <span class="sport-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+        <span class="sport-card-watermark">Run</span>
+      </a>
+
+      <!-- CRICKET -->
+      <a href="cricket.html" class="sport-card">
+        <div>
+          <span class="sport-card-icon">🏏</span>
+          <div class="sport-card-tag">Gallery</div>
+          <div class="sport-card-name">Cricket</div>
+          <p class="sport-card-desc">
+            Playing shirts, trousers, training tees and warm-up gear — whites and coloured kit.
+          </p>
+        </div>
+        <div class="sport-card-footer">
+          <span class="sport-card-items">Playing Shirts · Trousers · Training</span>
+          <span class="sport-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+        <span class="sport-card-watermark">Cricket</span>
+      </a>
+
+      <!-- SOCCER -->
+      <a href="soccer.html" class="sport-card">
+        <div>
+          <span class="sport-card-icon">⚽</span>
+          <div class="sport-card-tag">Gallery</div>
+          <div class="sport-card-name">Soccer</div>
+          <p class="sport-card-desc">
+            Home and away jerseys, shorts, socks and full strips for clubs at every level.
+          </p>
+        </div>
+        <div class="sport-card-footer">
+          <span class="sport-card-items">Jerseys · Shorts · Socks · Full Strips</span>
+          <span class="sport-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+        <span class="sport-card-watermark">Soccer</span>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip" data-reveal>
+    <div class="stats-grid">
+      <div>
+        <span class="stat-num">500<span>+</span></span>
+        <span class="stat-label">Clubs Kitted Out</span>
+      </div>
+      <div>
+        <span class="stat-num">4</span>
+        <span class="stat-label">Sports &amp; Growing</span>
+      </div>
+      <div>
+        <span class="stat-num">3<span>wk</span></span>
+        <span class="stat-label">Average Turnaround</span>
+      </div>
+      <div>
+        <span class="stat-num">100<span>%</span></span>
+        <span class="stat-label">Custom Sublimation</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── CTA BAND ── -->
+  <div class="cta-band">
+    <h2>Ready to Kit<br>Your Team?</h2>
+    <p>Fully custom · Made locally · Delivered in 3 weeks</p>
+    <a href="contact.html" class="btn-outline">Get a Free Quote</a>
+  </div>
+
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="max-w px-6 py-16">
+      <div class="grid md:grid-cols-4 gap-12">
+
+        <div>
+          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
+          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
+            Premium custom teamwear for every sport. Made with purpose, delivered fast.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Sports</div>
+          <a href="rugby.html"    class="footer-link">Rugby</a>
+          <a href="soccer.html"   class="footer-link">Soccer</a>
+          <a href="athletics.html" class="footer-link">Athletics</a>
+          <a href="cricket.html"  class="footer-link">Cricket</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Company</div>
+          <a href="about.html"   class="footer-link">Our Story</a>
+          <a href="process.html" class="footer-link">How We Work</a>
+          <a href="contact.html" class="footer-link">Contact Us</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Customer Service</div>
+          <a href="size-guide.html" class="footer-link">Size Guide</a>
+          <a href="faqs.html"       class="footer-link">FAQs</a>
+          <a href="delivery.html"   class="footer-link">Ordering &amp; Delivery</a>
+          <a href="terms.html"      class="footer-link">Terms &amp; Conditions</a>
+          <a href="privacy.html"    class="footer-link">Privacy Policy</a>
+          <a href="tel:+27696096529" class="footer-link mt-4">
+            <i class="fas fa-phone mr-2" style="color:var(--color-red);"></i>+27 (0)69 609 6529
+          </a>
+          <a href="mailto:info@dnasportswear.co.za" class="footer-link">
+            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info@dnasportswear.co.za
+          </a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
+        <p class="text-grey text-xs">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
+        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">Admin ↗</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* Scroll reveal */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+    /* Mobile nav */
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
+    document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
+  </script>
+
+</body>
+</html>
