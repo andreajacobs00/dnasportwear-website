@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | DNA SPORTSWEAR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: #0a0a0a; }
+
+    .dash-header {
+      background: #111;
+      border-bottom: 2px solid var(--color-red);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dash-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .dash-title span { color: var(--color-red); }
+
+    .stat-card {
+      background: #1a1a1a;
+      border: 1px solid #252525;
+      border-top: 3px solid var(--color-red);
+      padding: 1.5rem;
+    }
+
+    .stat-card-value {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--color-red);
+      line-height: 1;
+    }
+
+    .stat-card-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #666;
+      margin-top: 0.4rem;
+    }
+
+    .tab-btn {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #333;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--color-red);
+      border-color: var(--color-red);
+      color: white;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: #222;
+      color: #ccc;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #222;
+    }
+
+    td {
+      font-size: 0.85rem;
+      color: #bbb;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    tr:hover td { background: #1a1a1a; }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .badge-red   { background: rgba(232,19,42,0.15); color: var(--color-red); }
+    .badge-green { background: rgba(34,197,94,0.12); color: #4ade80; }
+
+    /* Mini bar chart */
+    .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+    .bar {
+      width: 100%;
+      background: var(--color-red);
+      opacity: 0.7;
+      border-radius: 2px 2px 0 0;
+      min-height: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .bar:hover { opacity: 1; }
+
+    .bar-label {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      color: #444;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #444;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Login screen */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #111;
+      border: 1px solid #222;
+      border-top: 3px solid var(--color-red);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: white;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: var(--color-red); }
+
+    #login-error {
+      color: var(--color-red);
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       LOGIN SCREEN
+       SECURITY NOTE: This is a simple client-side password for
+       basic protection. For a real deployment, replace this with
+       server-side authentication (e.g. GitHub Pages + Netlify
+       Identity, or a proper backend).
+
+       To change the password: update the string in checkLogin() below.
+  ============================================================ -->
+  <div id="login-screen">
+    <div class="login-box">
+      <div style="font-family:var(--font-display);font-size:1.4rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">
+        ADMIN <span style="color:var(--color-red);">ACCESS</span>
+      </div>
+      <p style="color:#555;font-size:0.8rem;margin-bottom:2rem;">Dashboard — restricted area</p>
+
+      <label style="font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#666;display:block;margin-bottom:0.4rem;">
+        Password
+      </label>
+      <input type="password" id="admin-password" class="form-input" placeholder="Enter password" />
+      <p id="login-error">Incorrect password</p>
+
+      <button onclick="checkLogin()" class="btn-primary mt-4 w-full" style="width:100%;text-align:center;">
+        Enter Dashboard
+      </button>
+
+      <p style="color:#333;font-size:0.72rem;margin-top:1.5rem;line-height:1.6;">
+        Tip: Change the password in <code style="color:#555;">admin/dashboard.html</code> inside the <code style="color:#555;">checkLogin()</code> function.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       DASHBOARD (hidden until login)
+  ============================================================ -->
+  <div id="dashboard" style="display:none;">
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div class="dash-title">DNA<span>SPORTSWEAR</span> &nbsp;·&nbsp; Admin</div>
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#666;text-decoration:none;">
+          ← Back to Site
+        </a>
+        <button onclick="clearData()" style="font-family:var(--font-display);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;background:transparent;border:1px solid #333;padding:0.4rem 0.8rem;cursor:pointer;">
+          Clear Data
+        </button>
+        <button onclick="logout()" class="btn-primary" style="font-size:0.75rem;padding:0.5rem 1.2rem;">
+          Log Out
+        </button>
+      </div>
+    </div>
+
+    <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
+
+      <!-- Last updated -->
+      <p id="last-updated" style="font-family:var(--font-display);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#444;margin-bottom:2rem;"></p>
+
+      <!-- Stat cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="stat-card">
+          <div class="stat-card-value" id="stat-total">0</div>
+          <div class="stat-card-label">Total Page Views</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value" id="stat-today">0</div>
+          <div class="stat-card-label">Views Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value" id="stat-30d">0</div>
+          <div class="stat-card-label">Views (Last 30 Days)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value" id="stat-enquiries">0</div>
+          <div class="stat-card-label">Total Enquiries</div>
+        </div>
+      </div>
+
+      <!-- Mini chart -->
+      <div style="background:#111;border:1px solid #1e1e1e;padding:1.5rem;margin-bottom:2rem;">
+        <div style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#555;margin-bottom:1rem;">
+          Page Views — Last 14 Days
+        </div>
+        <div class="bar-chart" id="bar-chart"></div>
+      </div>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+        <button class="tab-btn active" onclick="showTab('tab-enquiries', this)">
+          <i class="fas fa-envelope mr-1"></i> Enquiries
+        </button>
+        <button class="tab-btn" onclick="showTab('tab-pages', this)">
+          <i class="fas fa-chart-bar mr-1"></i> Top Pages
+        </button>
+        <button class="tab-btn" onclick="showTab('tab-visits', this)">
+          <i class="fas fa-list mr-1"></i> Recent Visits
+        </button>
+      </div>
+
+      <!-- Tab: Enquiries -->
+      <div id="tab-enquiries" class="tab-panel active">
+        <div style="background:#111;border:1px solid #1e1e1e;">
+          <div id="enquiries-table">
+            <div class="empty-state">No enquiries yet</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Top Pages -->
+      <div id="tab-pages" class="tab-panel">
+        <div style="background:#111;border:1px solid #1e1e1e;">
+          <div id="pages-table">
+            <div class="empty-state">No page data yet</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Recent Visits -->
+      <div id="tab-visits" class="tab-panel">
+        <div style="background:#111;border:1px solid #1e1e1e;">
+          <div id="visits-table">
+            <div class="empty-state">No visit data yet</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export button -->
+      <div style="margin-top:2rem;text-align:right;">
+        <button onclick="exportCSV()" class="btn-outline-red">
+          <i class="fas fa-download mr-2"></i>Export Enquiries CSV
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="../js/main.js"></script>
+  <script>
+    /* ============================================================
+       ADMIN DASHBOARD SCRIPT
+       All logic is here — no extra files needed.
+    ============================================================ */
+
+    // ---- LOGIN ----
+    // EDIT: Change 'admin2026' to your preferred password
+    const ADMIN_PASSWORD = 'admin2026';
+
+    function checkLogin() {
+      const input = document.getElementById('admin-password').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').style.display  = 'none';
+        document.getElementById('dashboard').style.display     = 'block';
+        sessionStorage.setItem('akuma_admin', '1');
+        loadDashboard();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    }
+
+    // Allow Enter key on password field
+    document.getElementById('admin-password').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkLogin();
+    });
+
+    function logout() {
+      sessionStorage.removeItem('akuma_admin');
+      location.reload();
+    }
+
+    // Stay logged in within session
+    if (sessionStorage.getItem('akuma_admin')) {
+      document.getElementById('login-screen').style.display  = 'none';
+      document.getElementById('dashboard').style.display     = 'block';
+    }
+
+    // ---- LOAD DASHBOARD ----
+    function loadDashboard() {
+      const summary = window.AkumaTracker.getSummary();
+
+      // Stat cards
+      document.getElementById('stat-total').textContent      = summary.totalVisits;
+      document.getElementById('stat-today').textContent      = summary.todayVisits;
+      document.getElementById('stat-30d').textContent        = summary.last30Visits;
+      document.getElementById('stat-enquiries').textContent  = summary.totalEnquiries;
+
+      // Last updated
+      document.getElementById('last-updated').textContent =
+        'Last refreshed: ' + new Date().toLocaleString();
+
+      // Bar chart
+      renderBarChart(summary.dailyCounts);
+
+      // Enquiries table
+      renderEnquiries(summary.recentEnquiries);
+
+      // Top pages table
+      renderTopPages(summary.topPages);
+
+      // Recent visits
+      renderVisits();
+    }
+
+    // ---- BAR CHART ----
+    function renderBarChart(dailyCounts) {
+      const chart  = document.getElementById('bar-chart');
+      const entries = Object.entries(dailyCounts);
+      const maxVal  = Math.max(...entries.map(e => e[1]), 1);
+
+      chart.innerHTML = entries.map(([date, count]) => {
+        const pct    = Math.round((count / maxVal) * 100);
+        const label  = date.slice(5); // MM-DD
+        return `
+          <div class="bar-col" title="${date}: ${count} views">
+            <div class="bar" style="height:${Math.max(pct, 2)}%"></div>
+            <div class="bar-label">${label}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ---- ENQUIRIES TABLE ----
+    function renderEnquiries(enquiries) {
+      const container = document.getElementById('enquiries-table');
+
+      if (!enquiries || enquiries.length === 0) {
+        container.innerHTML = '<div class="empty-state">No enquiries received yet</div>';
+        return;
+      }
+
+      document.getElementById('your-form-id').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Grab form values
+  const enquiry = {
+    date:    new Date().toISOString(),
+    fname:    document.getElementById('firstname').value,
+    lname:    document.getElementById('lastname').value,
+    phone:    document.getElementById('phone').value,
+    email:    document.getElementById('email').value,
+    sport:    document.getElementById('sport').value,  // remove if not applicable
+    size:     document.getElementById('size').value,
+    message:  document.getElementById('message').value,
+    page:     window.location.pathname
+  };
+
+  // Save to localStorage via your tracker
+  const store = window.AkumaTracker.getStore();
+  store.enquiries.push(enquiry);
+  localStorage.setItem('akuma_analytics', JSON.stringify(store));
+
+  // Optional: show confirmation
+  alert('Thanks! Your enquiry has been received.');
+  this.reset();
+});
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Sport</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${enquiries.map(e => `
+              <tr>
+                <td>${new Date(e.date).toLocaleDateString()}</td>
+                <td>${escHtml(e.name)}</td>
+                <td><a href="mailto:${escHtml(e.email)}" style="color:var(--color-red);text-decoration:none;">${escHtml(e.email)}</a></td>
+                <td>${e.sport ? `<span class="badge badge-red">${escHtml(e.sport)}</span>` : '—'}</td>
+                <td style="max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escHtml(e.message)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    // ---- TOP PAGES TABLE ----
+    function renderTopPages(topPages) {
+      const container = document.getElementById('pages-table');
+
+      if (!topPages || topPages.length === 0) {
+        container.innerHTML = '<div class="empty-state">No page data yet — visit some pages first</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Views</th>
+              <th>Bar</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${topPages.map(p => {
+              const pct = Math.round((p.count / topPages[0].count) * 100);
+              return `
+                <tr>
+                  <td>${escHtml(p.page || '/')}</td>
+                  <td><span class="badge badge-red">${p.count}</span></td>
+                  <td style="width:40%;">
+                    <div style="background:#1a1a1a;height:6px;border-radius:3px;">
+                      <div style="background:var(--color-red);height:6px;border-radius:3px;width:${pct}%;opacity:0.7;"></div>
+                    </div>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    // ---- RECENT VISITS TABLE ----
+    function renderVisits() {
+      const container = document.getElementById('visits-table');
+      const store     = window.AkumaTracker.getStore();
+      const visits    = store.visits.slice(-20).reverse();
+
+      if (!visits || visits.length === 0) {
+        container.innerHTML = '<div class="empty-state">No visits recorded yet</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Page</th>
+              <th>Referrer</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${visits.map(v => `
+              <tr>
+                <td>${new Date(v.ts).toLocaleString()}</td>
+                <td>${escHtml(v.page || '/')}</td>
+                <td style="color:#555;">${escHtml(v.ref || 'direct')}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    // ---- TAB SWITCHER ----
+    function showTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // ---- EXPORT CSV ----
+    function exportCSV() {
+      const store = window.AkumaTracker.getStore();
+      if (!store.enquiries || store.enquiries.length === 0) {
+        alert('No enquiries to export yet.');
+        return;
+      }
+
+      const headers = ['Date', 'Name', 'Email', 'Sport', 'Message', 'Page'];
+      const rows = store.enquiries.map(e => [
+        new Date(e.date).toLocaleString(),
+        e.name,
+        e.email,
+        e.sport,
+        e.message.replace(/"/g, '""'),
+        e.page,
+      ].map(v => `"${v}"`).join(','));
+
+      const csv  = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `enquiries-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ---- CLEAR DATA ----
+    function clearData() {
+      if (confirm('Delete ALL analytics and enquiry data? This cannot be undone.')) {
+        localStorage.removeItem('akuma_analytics');
+        loadDashboard();
+      }
+    }
+
+    // ---- HELPER ----
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+
+    // Load on page open if already logged in
+    if (sessionStorage.getItem('akuma_admin')) {
+      loadDashboard();
+    }
+  </script>
+
+</body>
+</html>
