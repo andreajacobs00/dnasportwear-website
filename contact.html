@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | DNA Sportswear</title>
+  <meta name="description" content="Let's build your kit. Whether you are starting fresh or scaling your teamwear, we got you." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { red: '#e8132a', dark: '#111111', black: '#0a0a0a', charcoal: '#1a1a1a' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .contact-section {
+      background: #0a0a0a;
+      padding: 100px 0 80px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-eyebrow {
+      font-family: 'Gotham', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #e8132a;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .contact-heading {
+      font-family: 'Gotham', sans-serif;
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 0.93;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 20px;
+    }
+    .contact-heading span { color: #e8132a; }
+    .contact-divider {
+      width: 48px;
+      height: 3px;
+      background: #e8132a;
+      margin-bottom: 24px;
+    }
+    .contact-sub {
+      font-size: 15px;
+      color: #999;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+    .info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(232,19,42,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon i { color: #e8132a; font-size: 15px; }
+    .info-text strong {
+      display: block;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .info-text span { font-size: 14px; color: #999; }
+    .social-row { display: flex; gap: 10px; }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-btn:hover { border-color: #e8132a; color: #e8132a; }
+
+    /* Form card */
+    .form-card {
+      background: #1a1a1a;
+      padding: 44px 40px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-family: 'Gotham', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-color: rgba(255,255,255,0.04);
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .form-group select option { background: #1a1a1a; color: #fff; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: #e8132a; }
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error { border-color: #e8132a; }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #444; }
+
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #e8132a;
+      color: #fff;
+      font-family: 'Gotham', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 15px 28px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+      margin-top: 4px;
+    }
+    .submit-btn:hover { background: #c90e22; }
+    .submit-btn:disabled { background: #333; cursor: default; }
+    .submit-btn i { font-size: 15px; }
+
+    .success-msg {
+      display: none;
+      background: rgba(232,19,42,0.08);
+      border: 1px solid rgba(232,19,42,0.25);
+      padding: 18px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .success-msg p {
+      font-family: 'Arial', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e8132a;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 52px;
+      }
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 32px 20px; }
+      .contact-section { padding: 80px 0 60px; }
+    }
+  </style>
+</head>
+
+<body class="page-fade">
+
+  <!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+  <nav id="navbar">
+    <div class="max-w flex items-center justify-between px-6">
+      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="sports.html" class="nav-link">Sports <i class="fas fa-chevron-down text-xs ml-1 opacity-50"></i></a>
+          <div class="dropdown-menu">
+            <a href="sports.html">All Sports</a>
+            <a href="rugby.html">Rugby</a>
+            <a href="hockey.html">Hockey</a>
+            <a href="netball.html">Netball</a>
+            <a href="cricket.html">Cricket</a>
+            <a href="multisports.html">Multisports</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="ranges.html" class="nav-link">Ranges <i class="fas fa-chevron-down text-xs ml-1 opacity-50"></i></a>
+          <div class="dropdown-menu">
+            <a href="ranges.html">All Ranges</a>
+            <a href="performance.html">Performance Wear</a>
+            <a href="training.html">Training Wear</a>
+            <a href="outerwear.html">Outerwear</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="admin/dashboard.html" class="nav-link text-xs opacity-60">Admin</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+        <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu">
+      <a href="index.html"   class="mobile-nav-link">Home</a>
+      <a href="sports.html"  class="mobile-nav-link">Sports</a>
+      <a href="ranges.html"  class="mobile-nav-link">Ranges</a>
+      <a href="about.html"   class="mobile-nav-link">About</a>
+      <a href="contact.html" class="mobile-nav-link active">Contact</a>
+      <a href="contact.html" class="mobile-nav-link" style="color:var(--color-red);">Enquire Now →</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+     CONTACT SECTION
+     ============================================================ -->
+  <section class="contact-section">
+    <div class="contact-inner">
+
+      <!-- Left: Info -->
+      <div>
+        <p class="contact-eyebrow">Get In Touch</p>
+        <h1 class="contact-heading">Let's build<br>your <span>kit.</span></h1>
+        <div class="contact-divider"></div>
+        <p class="contact-sub">Whether you're starting fresh or scaling your teamwear programme, we're ready to work with you. Fill in the form and we'll get back to you within 24 hours.</p>
+
+        <!--<div class="info-block">
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div class="info-text">
+              <strong>Phone</strong>
+              <span>+27 (0)69 609 6529</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-text">
+              <strong>Email</strong>
+              <span>info@dnasportswear.co.za</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-text">
+              <strong>Location</strong>
+              <span>Cape Town, South Africa</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-row">
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <!--<a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>-->
+        </div>-->
+      </div>
+
+      <!-- Right: Form -->
+      <div class="form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-fname">First Name *</label>
+            <input type="text" id="cf-fname" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label for="cf-lname">Last Name *</label>
+            <input type="text" id="cf-lname" placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-email">Email Address *</label>
+          <input type="email" id="cf-email" placeholder="john@yourclub.co.za" />
+        </div>
+
+        <div class="form-group">
+          <label for="cf-phone">Phone Number</label>
+          <input type="tel" id="cf-phone" placeholder="+27 ..." />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-sport">Sport</label>
+            <select id="cf-sport">
+              <option value="" disabled selected>Select sport</option>
+              <option>Rugby</option>
+              <option>Hockey</option>
+              <option>Netball</option>
+              <option>Cricket</option>
+              <option>Running &amp; Athletics</option>
+              <option>Multisports</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-qty">Team Size</label>
+            <select id="cf-qty">
+              <option value="" disabled selected>Select size</option>
+              <option>Under 15</option>
+              <option>15 – 30</option>
+              <option>31 – 60</option>
+              <option>61 – 100</option>
+              <option>100+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-msg">Tell Us About Your Kit</label>
+          <textarea id="cf-msg" placeholder="Club name, colours, timeline, any special requirements…"></textarea>
+        </div>
+
+        <button class="submit-btn" id="cf-submit" onclick="handleSubmit()">
+          Send Enquiry <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <div class="success-msg" id="cf-success">
+          <p>✓ &nbsp;Enquiry received — we'll be in touch within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+  <footer>
+    <div class="max-w px-6 py-16">
+      <div class="grid md:grid-cols-4 gap-12">
+
+        <div>
+          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
+          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
+            Premium custom teamwear for every sport. Made with purpose, delivered fast.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Sports</div>
+          <a href="rugby.html"       class="footer-link">Rugby</a>
+          <a href="hockey.html"      class="footer-link">Hockey</a>
+          <a href="netball.html"     class="footer-link">Netball</a>
+          <a href="cricket.html"     class="footer-link">Cricket</a>
+          <a href="running.html"     class="footer-link">Running & Athletics</a>
+          <a href="multisports.html" class="footer-link">Multisports</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Company</div>
+          <a href="about.html"   class="footer-link">Our Story</a>
+          <a href="process.html" class="footer-link">How We Work</a>
+          <a href="contact.html" class="footer-link">Contact Us</a>
+          <a href="news.html"    class="footer-link">News</a>
+          <a href="careers.html" class="footer-link">Careers</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Customer Service</div>
+          <a href="size-guide.html" class="footer-link">Size Guide</a>
+          <a href="faqs.html"       class="footer-link">FAQs</a>
+          <a href="delivery.html"   class="footer-link">Ordering & Delivery</a>
+          <a href="terms.html"      class="footer-link">Terms & Conditions</a>
+          <a href="privacy.html"    class="footer-link">Privacy Policy</a>
+          <a href="tel:+2769096529" class="footer-link mt-4">
+            <i class="fas fa-phone mr-2 text-red-600"></i>+27 (0)69 609 6529
+          </a>
+          <a href="mailto:info@dnasportswear.co.za" class="footer-link">
+            <i class="fas fa-envelope mr-2 text-red-600"></i>info@dnasportswear.co.za
+          </a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
+        <p class="text-grey text-xs">
+          © 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa
+        </p>
+        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">
+          Admin ↗
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    function handleSubmit() {
+      const required = ['cf-fname', 'cf-lname', 'cf-email'];
+      let valid = true;
+
+      required.forEach(function(id) {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.classList.add('error');
+          valid = false;
+        } else {
+          el.classList.remove('error');
+        }
+      });
+
+      const emailEl = document.getElementById('cf-email');
+      if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+        emailEl.classList.add('error');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const btn = document.getElementById('cf-submit');
+      btn.disabled = true;
+      btn.innerHTML = 'Sent ✓';
+
+      document.getElementById('cf-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
