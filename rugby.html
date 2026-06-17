@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rugby Gallery | DNA Sportswear</title>
+  <meta name="description" content="Browse our rugby teamwear gallery — custom kit for clubs of every level." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red:      '#e8132a',
+              dark:     '#111111',
+              black:    '#0a0a0a',
+              charcoal: '#1a1a1a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --color-red:      #e8132a;
+      --color-dark:     #111111;
+      --color-black:    #0a0a0a;
+      --color-charcoal: #1a1a1a;
+      --color-grey:     #888;
+      --font-display:   'Gotham', sans-serif;
+      --font-body:      'Arial', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--color-black);
+      color: #fff;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV (copied from main site) ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.9rem 0;
+    }
+    .max-w { max-width: 1200px; margin: 0 auto; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--color-red); }
+    .nav-link {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--color-red);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 0.55rem 1.3rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c4101f; }
+
+    /* ── PAGE HERO (compact) ── */
+    .page-hero {
+      padding: 8rem 1.5rem 4rem;
+      background: var(--color-charcoal);
+      border-bottom: 2px solid var(--color-red);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: 'RUGBY';
+      position: absolute;
+      right: -0.5rem;
+      bottom: -1.5rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(6rem, 18vw, 14rem);
+      color: rgba(232,19,42,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .section-title span { color: var(--color-red); }
+    .red-line {
+      width: 2.5rem;
+      height: 3px;
+      background: var(--color-red);
+      margin: 1rem 0 1.5rem;
+    }
+    .text-grey { color: var(--color-grey); }
+
+    /* ── FILTER TABS ── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 2rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .filter-btn {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      border-color: var(--color-red);
+      color: #fff;
+    }
+    .filter-btn.active {
+      background: var(--color-red);
+      border-color: var(--color-red);
+      color: #fff;
+    }
+
+    /* ── MASONRY GALLERY ── */
+    .gallery-section {
+      padding: 0 1.5rem 5rem;
+    }
+    .gallery-grid {
+      columns: 1;
+      column-gap: 0.75rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px)  { .gallery-grid { columns: 2; } }
+    @media (min-width: 900px)  { .gallery-grid { columns: 3; } }
+    @media (min-width: 1100px) { .gallery-grid { columns: 4; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.45s ease;
+      filter: brightness(0.88) saturate(0.9);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1) saturate(1.05);
+    }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .gallery-item-label span {
+      color: var(--color-red);
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.15rem;
+    }
+
+    /* Wide featured item (spans visually via taller image) */
+    .gallery-item.featured img {
+      /* natural tall crop — masonry handles the rest */
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.94);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox-img {
+      max-width: min(900px, 100%);
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    #lightbox-close:hover { color: var(--color-red); }
+    #lightbox-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      font-size: 1.2rem;
+      padding: 0.6rem 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lb-nav:hover { border-color: var(--color-red); color: #fff; }
+    #lb-prev { left: 1rem; }
+    #lb-next { right: 1rem; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--color-red);
+      padding: 4rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,0.04) 20px,
+        rgba(0,0,0,0.04) 40px
+      );
+    }
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.05;
+      position: relative;
+    }
+    .cta-band p {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin: 0.75rem 0 1.75rem;
+      position: relative;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid #fff;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .btn-outline:hover { background: #fff; color: var(--color-red); }
+
+    /* ── FOOTER (minimal, matching main) ── */
+    footer {
+      background: var(--color-charcoal);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--color-red); }
+    .footer-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .footer-link {
+      display: block;
+      color: var(--color-grey);
+      font-size: 0.85rem;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #fff; }
+    .social-link {
+      width: 2rem; height: 2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
+
+    /* ── REVEAL ANIMATION ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    [data-reveal].visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── UPLOAD PLACEHOLDER CARDS ── */
+    .upload-placeholder {
+      background: var(--color-charcoal);
+      border: 1.5px dashed rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 3rem 1rem;
+      color: rgba(255,255,255,0.2);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .upload-placeholder i { font-size: 1.5rem; color: rgba(232,19,42,0.25); }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="max-w flex items-center justify-between px-6">
+      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="sports.html" class="nav-link">Sports</a>
+        <a href="ranges.html" class="nav-link">Ranges</a>
+        <a href="about.html"  class="nav-link">About</a>
+      </div>
+      <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+    </div>
+  </nav>
+
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="max-w px-6">
+      <span class="section-label">Custom Teamwear</span>
+      <h1 class="section-title">Rugby<br><span>Kit Gallery</span></h1>
+      <div class="red-line"></div>
+      <p class="text-grey" style="font-size:0.92rem;max-width:480px;line-height:1.7;">
+        Every jersey below was built from scratch for a real club. Browse the work,
+        then get in touch and we'll design yours.
+      </p>
+    </div>
+  </div>
+
+  <!--<div class="sport-tabs">
+    <a href="rugby.html"     class="sport-tab"><i class="fas fa-football-ball"></i> Rugby</a>
+    <a href="athletics.html" class="sport-tab"><i class="fas fa-running"></i> Athletics</a>
+    <a href="cricket.html"   class="sport-tab active"><i class="fas fa-baseball-ball"></i> Cricket</a>
+    <a href="soccer.html"    class="sport-tab"><i class="fas fa-futbol"></i> Soccer</a>
+  </div>-->
+
+
+  <!-- ── FILTER BAR ── -->
+  <!--
+    HOW TO USE FILTERS:
+    Add a data-category="jerseys" (or "shorts", "training", "full-kit") attribute
+    to each .gallery-item below, then the JS below will show/hide them.
+    Remove this bar entirely if you don't need categories.
+  -->
+  <div class="filter-bar" data-reveal>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="jerseys">Jerseys</button>
+    <button class="filter-btn" data-filter="shorts">Shorts</button>
+    <button class="filter-btn" data-filter="training">Training</button>
+    <button class="filter-btn" data-filter="full-kit">Full Kit</button>
+  </div>
+
+
+  <!-- ── GALLERY ── -->
+  <!--
+    HOW TO ADD YOUR OWN IMAGES:
+    1. Copy one of the <a class="gallery-item"> blocks below.
+    2. Replace the img src with your own file path, e.g. src="images/rugby/jersey-01.jpg"
+    3. Update data-caption and the label text.
+    4. Add data-category="jerseys" (or another tag) if you're using filters.
+    5. Delete the placeholder blocks once you have real images.
+  -->
+  <section class="gallery-section">
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- REAL IMAGE SLOT — replace src with your photo -->
+      <a class="gallery-item" data-category="jerseys"
+         data-caption="Club Jersey · Custom Sublimation"
+         data-src="images/Image.jpg">
+        <img src="images/Image.jpg"
+             alt="Rugby jersey" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Jerseys</span>
+            Club Jersey
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item" data-category="full-kit"
+         data-caption="Full Match Kit · Home & Away"
+         data-src="images/Image4.jpg">
+        <img src="images/Image4.jpg"
+             alt="Full rugby kit" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Full Kit</span>
+            Home & Away Set
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item featured" data-category="jerseys"
+         data-caption="Bespoke Match Jersey · Sublimation Print"
+         data-src="images/Image3.jpg">
+        <img src="images/Image3.jpg"
+             alt="Rugby match jersey" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Jerseys</span>
+            Match Jersey
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item" data-category="training"
+         data-caption="Training Tee · Performance Fabric"
+         data-src="images/Image.jpg">
+        <img src="images/Image.jpg"
+             alt="Rugby training wear" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Training</span>
+            Training Tee
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item" data-category="shorts"
+         data-caption="Match Shorts · Moisture-Wicking"
+         data-src="images/Image.jpg">
+        <img src="images/Image.jpg"
+             alt="Rugby shorts" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Shorts</span>
+            Match Shorts
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item" data-category="full-kit"
+         data-caption="Full Squad Kit · 40+ Players"
+         data-src="images/Image3.jpg">
+        <img src="images/Image3.jpg"
+             alt="Squad kit" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Full Kit</span>
+            Squad Order
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item" data-category="jerseys"
+         data-caption="Club Jersey · Custom Sublimation"
+         data-src="images/Image.jpg">
+        <img src="images/Image.jpg"
+             alt="Rugby jersey" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Jerseys</span>
+            Club Jersey
+          </div>
+        </div>
+      </a>
+
+      <a class="gallery-item featured" data-category="jerseys"
+         data-caption="Bespoke Match Jersey · Sublimation Print"
+         data-src="images/Image3.jpg">
+        <img src="images/Image3.jpg"
+             alt="Rugby match jersey" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">
+            <span>Jerseys</span>
+            Match Jersey
+          </div>
+        </div>
+      </a>
+
+      <!--<!-- PLACEHOLDER — delete these once you have real photos
+      <div class="upload-placeholder" data-category="jerseys">
+        <i class="fas fa-image"></i>
+        Add your photo here
+      </div>
+
+      <div class="upload-placeholder" data-category="training">
+        <i class="fas fa-image"></i>
+        Add your photo here
+      </div>
+
+      <div class="upload-placeholder" data-category="full-kit">
+        <i class="fas fa-image"></i>
+        Add your photo here
+      </div>-->
+
+    </div>
+  </section>
+
+
+  <!-- ── CTA BAND ── -->
+  <div class="cta-band">
+    <h2>Want Kit Like This<br>For Your Club?</h2>
+    <p>Fully custom · Made locally · Delivered in 3 weeks</p>
+    <a href="contact.html" class="btn-outline">Get a Free Quote</a>
+  </div>
+
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="max-w px-6 py-16">
+      <div class="grid md:grid-cols-4 gap-12">
+
+        <div>
+          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
+          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
+            Premium custom teamwear for every sport. Made with purpose, delivered fast.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <!--<a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>-->
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Sports</div>
+          <a href="rugby.html"      class="footer-link">Rugby</a>
+          <a href="soccer.html"     class="footer-link">Soccer</a>
+          <a href="athletics.html"    class="footer-link">Athletics</a>
+          <a href="cricket.html"    class="footer-link">Cricket</a>
+          <!--<a href="running.html"    class="footer-link">Running & Athletics</a>
+          <a href="multisports.html"class="footer-link">Multisports</a>-->
+        </div>
+
+        <div>
+          <div class="footer-heading">Company</div>
+          <a href="about.html"     class="footer-link">Our Story</a>
+          <a href="process.html"   class="footer-link">How We Work</a>
+          <a href="contact.html"   class="footer-link">Contact Us</a>
+          <!--<a href="news.html"      class="footer-link">News</a>
+          <a href="careers.html"   class="footer-link">Careers</a>-->
+        </div>
+
+        <div>
+          <div class="footer-heading">Customer Service</div>
+          <a href="size-guide.html" class="footer-link">Size Guide</a>
+          <a href="faqs.html"       class="footer-link">FAQs</a>
+          <a href="delivery.html"   class="footer-link">Ordering & Delivery</a>
+          <a href="terms.html"      class="footer-link">Terms & Conditions</a>
+          <a href="privacy.html"    class="footer-link">Privacy Policy</a>
+          <a href="tel:+27696096529" class="footer-link mt-4">
+            <i class="fas fa-phone mr-2 text-red-600"></i>+27 (0)69 609 6529
+          </a>
+          <a href="mailto:info.dnasportswear.co.za" class="footer-link">
+            <i class="fas fa-envelope mr-2 text-red-600"></i>info.dnasportswear.co.za
+          </a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
+        <p class="text-grey text-xs">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
+        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">Admin ↗</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ── LIGHTBOX ── -->
+  <div id="lightbox">
+    <button id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lb-nav" id="lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lb-nav" id="lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <p id="lightbox-caption"></p>
+  </div>
+
+
+  <script>
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+    /* ── Filter tabs ── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        galleryItems.forEach(item => {
+          const cat = item.dataset.category || 'all';
+          item.style.display = (f === 'all' || cat === f) ? '' : 'none';
+        });
+      });
+    });
+
+    /* ── Lightbox ── */
+    const lightbox   = document.getElementById('lightbox');
+    const lbImg      = document.getElementById('lightbox-img');
+    const lbCaption  = document.getElementById('lightbox-caption');
+    const lbClose    = document.getElementById('lightbox-close');
+    const lbPrev     = document.getElementById('lb-prev');
+    const lbNext     = document.getElementById('lb-next');
+
+    // Only real gallery items (with data-src), not placeholders
+    const clickableItems = () => [...document.querySelectorAll('#gallery-grid .gallery-item[data-src]')]
+      .filter(el => el.style.display !== 'none');
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      const items = clickableItems();
+      currentIndex = index;
+      lbImg.src      = items[currentIndex].dataset.src;
+      lbImg.alt      = items[currentIndex].querySelector('img').alt;
+      lbCaption.textContent = items[currentIndex].dataset.caption || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    function navigate(dir) {
+      const items = clickableItems();
+      currentIndex = (currentIndex + dir + items.length) % items.length;
+      lbImg.src     = items[currentIndex].dataset.src;
+      lbImg.alt     = items[currentIndex].querySelector('img').alt;
+      lbCaption.textContent = items[currentIndex].dataset.caption || '';
+    }
+
+    document.querySelectorAll('#gallery-grid .gallery-item[data-src]').forEach((item, i) => {
+      item.addEventListener('click', e => {
+        e.preventDefault();
+        // index among currently visible clickable items
+        const vis = clickableItems();
+        const idx = vis.indexOf(item);
+        if (idx !== -1) openLightbox(idx);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click',  () => navigate(-1));
+    lbNext.addEventListener('click',  () => navigate(1));
+
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    });
+  </script>
+
+</body>
+</html>
