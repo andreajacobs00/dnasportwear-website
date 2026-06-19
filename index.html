@@ -6,55 +6,521 @@
   <title>DNA Sportswear | Custom Sports Kit & Teamwear</title>
   <meta name="description" content="Premium custom teamwear for every sport. Made with purpose, delivered fast. Fully bespoke kit designed for your team." />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Barlow Condensed (display) + Barlow (body) -->
+  <!-- Google Fonts: Barlow Condensed (fallback display) + Barlow (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Your custom styles -->
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- Tailwind config to match brand tokens -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             brand: {
-              red:     '#e8132a',
-              dark:    '#111111',
-              black:   '#0a0a0a',
-              charcoal:'#1a1a1a',
+              red:      '#e8132a',
+              dark:     '#111111',
+              black:    '#0a0a0a',
+              charcoal: '#1a1a1a',
             }
           }
         }
       }
     }
   </script>
+
+  <style>
+    /* ── Gotham Medium via system/web-safe fallback stack ── */
+    @font-face {
+      font-family: 'Gotham';
+      src: local('Gotham Medium'), local('GothamMedium'), local('Gotham-Medium');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    :root {
+      --font-heading: 'Gotham', 'Barlow Condensed', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      --font-body:    Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      --color-red:    #e8132a;
+      --color-bg:     #ffffff;
+      --color-text:   #111111;
+      --color-muted:  #555555;
+      --color-border: #e0e0e0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4, h5, h6,
+    .section-title, .section-label, .nav-logo, .footer-logo,
+    .usp-title, .testimonial-title, .news-card-title, .sport-card-label,
+    .hero-eyebrow, .btn-primary, .btn-outline, .footer-heading {
+      font-family: var(--font-heading);
+    }
+
+    p, li, a, span, .text-grey, .testimonial-body {
+      font-family: var(--font-body);
+    }
+
+    /* ── LAYOUT HELPERS ── */
+    .max-w         { max-width: 1200px; margin: 0 auto; }
+    .max-w-narrow  { max-width: 640px; }
+    .section-pad   { padding: 80px 24px; }
+    .text-grey     { color: var(--color-muted); }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 16px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    #navbar .max-w {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ── LOGO IMAGE ── */
+    .nav-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    /* ── NAV LINKS ── */
+    .nav-link {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--color-red); }
+
+    /* ── DROPDOWN ── */
+    .nav-dropdown { position: relative; }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      min-width: 180px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      z-index: 200;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--color-text);
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { background: #f7f7f7; color: var(--color-red); }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--color-red);
+      color: #fff !important;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #c4101f; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 10px 24px;
+      border: 2px solid var(--color-text);
+      color: var(--color-text) !important;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--color-red); color: var(--color-red) !important; transform: translateY(-1px); }
+
+    /* ── HERO (keeps image bg) ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 64px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.45);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+      max-width: 800px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--color-red); }
+    .hero-sub {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      margin-bottom: 36px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── STATS TICKER ── */
+    .stats-strip {
+      background: var(--color-red);
+      overflow: hidden;
+      padding: 12px 0;
+    }
+    .stats-ticker {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .stats-ticker-item {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 40px;
+      white-space: nowrap;
+    }
+    .stats-ticker-item::after {
+      content: '·';
+      margin-left: 40px;
+      opacity: 0.5;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION LABELS & TITLES ── */
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--color-red); }
+    .red-line {
+      width: 40px;
+      height: 3px;
+      background: var(--color-red);
+      margin-bottom: 24px;
+    }
+    .red-line.center { margin: 0 auto 24px; }
+
+    /* ── INTRO SECTION ── */
+    .bg-intro { background: #f7f7f7; }
+
+    /* ── USP CARDS ── */
+    .usp-card {
+      background: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 24px 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .usp-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-color: var(--color-red); }
+    .usp-icon { font-size: 1.6rem; display: block; margin-bottom: 10px; }
+    .usp-title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 6px;
+    }
+
+    /* ── SPORTS GRID ── */
+    .bg-sports { background: #efefef; }
+    .sport-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 3/4;
+      text-decoration: none;
+    }
+    .sport-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .sport-card:hover img { transform: scale(1.05); }
+    .sport-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    }
+    .sport-card-label {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .bg-testimonials { background: #f7f7f7; }
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-red);
+      border-radius: 4px;
+      padding: 28px 24px;
+    }
+    .testimonial-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 14px;
+    }
+    .testimonial-body {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--color-text);
+      color: #fff;
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .cta-band h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .cta-band p {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+    }
+    .cta-band .btn-outline {
+      border-color: #fff;
+      color: #fff !important;
+    }
+    .cta-band .btn-outline:hover {
+      border-color: var(--color-red);
+      color: var(--color-red) !important;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: #fff;
+    }
+    footer .text-grey { color: #888; }
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--color-red); }
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .footer-link {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: #888;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--color-red); }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid #333;
+      border-radius: 50%;
+      color: #888;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid var(--color-border);
+      z-index: 99;
+      padding: 8px 0 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-nav-link {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.2s;
+    }
+    .mobile-nav-link:hover { color: var(--color-red); }
+
+    /* ── REVEAL ANIMATION ── */
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    [data-reveal].visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      .section-pad { padding: 56px 20px; }
+    }
+  </style>
 </head>
 
-<body class="page-fade">
+<body>
 
   <!-- ============================================================
        NAVIGATION
-       To edit nav links: update both the desktop and mobile sections
        ============================================================ -->
   <nav id="navbar">
-    <div class="max-w flex items-center justify-between px-6">
+    <div class="max-w flex items-center justify-between px-6" style="width:100%;">
 
-      <!-- Logo — change "YOUR" and "BRAND" to your company name -->
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <!-- LOGO IMAGE — replace src with your actual logo file -->
+      <a href="index.html">
+        <img
+          src="images/logo.png"
+          alt="DNA Sportswear"
+          class="nav-logo-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <!-- Fallback text logo if image not found -->
+        <span style="display:none; font-family:var(--font-heading); font-size:1.3rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#111; text-decoration:none;">
+          DNA<span style="color:#e8132a;">SPORTSWEAR</span>
+        </span>
+      </a>
 
       <!-- Desktop nav links -->
       <div class="hidden md:flex items-center gap-8">
         <div class="nav-dropdown">
-          <a href="#sports" class="nav-link">Sports <i class="fas fa-chevron-down text-xs ml-1 opacity-50"></i></a>
+          <a href="#sports" class="nav-link">Sports <i class="fas fa-chevron-down text-xs ml-1 opacity-40"></i></a>
           <div class="dropdown-menu">
             <a href="sports.html">All Sports</a>
             <a href="rugby.html">Rugby</a>
@@ -65,7 +531,7 @@
         </div>
 
         <div class="nav-dropdown">
-          <a href="ranges.html" class="nav-link">Ranges <i class="fas fa-chevron-down text-xs ml-1 opacity-50"></i></a>
+          <a href="ranges.html" class="nav-link">Ranges <i class="fas fa-chevron-down text-xs ml-1 opacity-40"></i></a>
           <div class="dropdown-menu">
             <a href="ranges.html">All Ranges</a>
             <a href="performance.html">Performance Wear</a>
@@ -75,72 +541,70 @@
         </div>
 
         <a href="about.html" class="nav-link">About</a>
-        <a href="admin/dashboard.html" class="nav-link text-xs opacity-60">Admin</a>
+        <a href="admin/dashboard.html" class="nav-link" style="font-size:0.75rem; opacity:0.5;">Admin</a>
       </div>
 
       <!-- CTA + Hamburger -->
       <div class="flex items-center gap-4">
         <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
-
-        <!-- Mobile hamburger button -->
-        <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+        <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Toggle menu" aria-expanded="false" style="color:#111;">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
-
-    <!-- Mobile menu — links duplicated from desktop -->
-    <div id="mobile-menu">
-      <a href="index.html"    class="mobile-nav-link active">Home</a>
-      <a href="sports.html"   class="mobile-nav-link">Sports</a>
-      <a href="ranges.html"   class="mobile-nav-link">Ranges</a>
-      <a href="about.html"    class="mobile-nav-link">About</a>
-      <a href="contact.html"  class="mobile-nav-link" style="color:var(--color-red);">Enquire Now →</a>
-    </div>
   </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu">
+    <a href="index.html"   class="mobile-nav-link">Home</a>
+    <a href="sports.html"  class="mobile-nav-link">Sports</a>
+    <a href="ranges.html"  class="mobile-nav-link">Ranges</a>
+    <a href="about.html"   class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link" style="color:var(--color-red);">Enquire Now →</a>
+  </div>
 
 
   <!-- ============================================================
-       HERO SECTION
-       Edit the headline, sub-headline and button text below
+       HERO — background image + dark overlay, white text
        ============================================================ -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Custom Sports Kit & Teamwear</span>
-
-      <!-- EDIT: Your main headline — keep it SHORT and PUNCHY -->
       <h1>
         Custom Kit.
         <span>Made to</span>
         Perform.
       </h1>
-
-      <!-- EDIT: Your three key selling points -->
       <p class="hero-sub">
         <strong>Made Locally</strong> &nbsp;·&nbsp;
         <strong>3-Week Delivery</strong> &nbsp;·&nbsp;
         <strong>60+ Sports</strong>
       </p>
-
-      <!-- EDIT: Button text and link -->
       <div class="flex flex-wrap justify-center gap-4">
         <a href="contact.html" class="btn-primary">Get a Quote</a>
-        <a href="about.html" class="btn-outline">Our Story</a>
+        <a href="about.html" class="btn-outline" style="border-color:#fff; color:#fff !important;">Our Story</a>
       </div>
     </div>
   </section>
 
 
   <!-- ============================================================
-       SCROLLING STATS TICKER
-       Edit the items array in the JS below, or directly in the HTML
+       STATS TICKER
        ============================================================ -->
   <div class="stats-strip">
     <div class="stats-ticker">
-      <!-- Each item is one ticker entry — add or remove as needed -->
+      <span class="stats-ticker-item">Made Locally</span>
+      <span class="stats-ticker-item">3-Week Turnaround</span>
+      <span class="stats-ticker-item">Fully Custom</span>
+      <span class="stats-ticker-item">60+ Sports</span>
+      <span class="stats-ticker-item">Thousands of Teams Served</span>
+      <span class="stats-ticker-item">5-Star Reviews</span>
+      <span class="stats-ticker-item">Performance Fabrics</span>
+      <span class="stats-ticker-item">Grassroots to Elite</span>
+      <!-- Duplicated for seamless loop -->
       <span class="stats-ticker-item">Made Locally</span>
       <span class="stats-ticker-item">3-Week Turnaround</span>
       <span class="stats-ticker-item">Fully Custom</span>
@@ -154,18 +618,16 @@
 
 
   <!-- ============================================================
-       INTRO SECTION
-       Edit the heading, body copy, and links
+       INTRO SECTION — white bg, black text
        ============================================================ -->
-  <section class="section-pad bg-dark">
-    <div class="max-w grid md:grid-cols-2 gap-12 items-center">
+  <section class="section-pad bg-intro">
+    <div class="max-w grid md:grid-cols-2 gap-12 items-center px-6">
 
       <div data-reveal>
         <span class="section-label">Who We Are</span>
         <h2 class="section-title">Kit That Performs.<br><span>Service That Delivers.</span></h2>
         <div class="red-line"></div>
         <p class="text-grey leading-relaxed mb-4" style="font-size:0.95rem;">
-          <!-- EDIT: Your brand origin story in 2–3 sentences -->
           We started DNA Sportswear because we were tired of slow lead times and generic kit.
           Today, we're one of the most trusted teamwear brands in the game — making custom
           sports kit with purpose and delivering it fast.
@@ -182,32 +644,26 @@
 
       <!-- USP grid -->
       <div class="grid grid-cols-2 gap-4" data-reveal>
-
-        <!-- EDIT: Add/change USP cards -->
         <div class="usp-card">
           <span class="usp-icon">🇿🇦</span>
           <div class="usp-title">Made Locally</div>
           <p class="text-grey" style="font-size:0.82rem;">Built close to home for quality you can trust.</p>
         </div>
-
         <div class="usp-card">
           <span class="usp-icon">⚡</span>
           <div class="usp-title">Delivered Fast</div>
           <p class="text-grey" style="font-size:0.82rem;">Sign-off to pitch in under three weeks.</p>
         </div>
-
         <div class="usp-card">
           <span class="usp-icon">🎨</span>
           <div class="usp-title">Fully Custom</div>
           <p class="text-grey" style="font-size:0.82rem;">Designed for your team and no one else.</p>
         </div>
-
         <div class="usp-card">
           <span class="usp-icon">⭐</span>
           <div class="usp-title">Trusted</div>
           <p class="text-grey" style="font-size:0.82rem;">Hundreds of clubs backed by 5-star reviews.</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -215,92 +671,47 @@
 
   <!-- ============================================================
        SPORTS GRID
-       IMAGES: Replace the src attributes with real photos.
-       Free high-quality sports photos from: https://unsplash.com
        ============================================================ -->
-  <section class="section-pad bg-black">
-    <div class="max-w">
+  <section id="sports" class="section-pad bg-sports">
+    <div class="max-w px-6">
 
       <div class="text-center mb-12" data-reveal>
         <span class="section-label">What We Cover</span>
         <h2 class="section-title">Custom Kit For<br><span>Every Sport</span></h2>
         <div class="red-line center"></div>
         <p class="text-grey max-w-narrow mx-auto mt-4" style="font-size:0.92rem;">
-          Whether it's rugby, netball, hockey, cricket or beyond - our teamwear is fully
+          Whether it's rugby, netball, hockey, cricket or beyond — our teamwear is fully
           customisable and delivered in three weeks or less.
         </p>
       </div>
 
-      <!-- Sport cards grid — add/remove cards as needed -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3" data-reveal>
 
-        <!-- Card: Rugby -->
         <a href="rugby.html" class="sport-card">
-          <!--
-            REPLACE src below with a real rugby photo.
-            Free option: https://unsplash.com/s/photos/rugby
-            Or use a local file: src="images/rugby.jpg"
-          -->
-          <img src="images/Image4.jpg"
-               alt="Rugby teamwear" loading="lazy" />
+          <img src="images/Image4.jpg" alt="Rugby teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Rugby</div>
         </a>
 
-        <!-- Card: Hockey -->
         <a href="soccer.html" class="sport-card">
           <img src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600&auto=format&fit=crop&q=80"
-               alt="Hockey teamwear" loading="lazy" />
+               alt="Soccer teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Soccer</div>
         </a>
 
-        <!-- Card: Netball -->
         <a href="athletics.html" class="sport-card">
           <img src="https://images.unsplash.com/photo-1574271143515-5cddf8da19be?w=600&auto=format&fit=crop&q=80"
-               alt="Netball teamwear" loading="lazy" />
+               alt="Athletics teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Athletics</div>
         </a>
 
-       <!-- Card: Cricket --> 
         <a href="cricket.html" class="sport-card">
           <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&auto=format&fit=crop&q=80"
                alt="Cricket teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Cricket</div>
-        </a>
-
-        <!-- Card: Running -
-        <a href="running.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&auto=format&fit=crop&q=80"
-               alt="Running kit" loading="lazy" />
-          <div class="sport-card-overlay"></div>
-          <div class="sport-card-label">Running</div>
-        </a>
-
-        <!-- Card: Training Wear -
-        <a href="training.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80"
-               alt="Training wear" loading="lazy" />
-          <div class="sport-card-overlay"></div>
-          <div class="sport-card-label">Training Wear</div>
-        </a>
-
-        <!-- Card: Education 
-        <a href="education.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&auto=format&fit=crop&q=80"
-               alt="Schools and universities" loading="lazy" />
-          <div class="sport-card-overlay"></div>
-          <div class="sport-card-label">Schools & Unis</div>
-        </a>
-
-        <!-- Card: Multisports -
-        <a href="multisports.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=80"
-               alt="Multisport teamwear" loading="lazy" />
-          <div class="sport-card-overlay"></div>
-          <div class="sport-card-label">Multisports</div>-->
         </a>
 
       </div>
@@ -310,10 +721,9 @@
 
   <!-- ============================================================
        TESTIMONIALS
-       Edit the quote text, heading and author labels below
        ============================================================ -->
-  <section class="section-pad bg-dark">
-    <div class="max-w">
+  <section class="section-pad bg-testimonials">
+    <div class="max-w px-6">
 
       <div class="text-center mb-12" data-reveal>
         <span class="section-label">Social Proof</span>
@@ -323,16 +733,15 @@
 
       <div class="grid md:grid-cols-3 gap-6" data-reveal>
 
-        <!-- EDIT: Replace quotes and headings with real reviews -->
         <div class="testimonial-card">
           <div class="testimonial-title">Exceptional Service & Speed</div>
           <p class="testimonial-body">
-            We just want to thank DNA Sportswear for making the impossible possible. The team went 
-            above and beyond, delivering a highly professional service from start to finish. The design exceeded 
+            We just want to thank DNA Sportswear for making the impossible possible. The team went
+            above and beyond, delivering a highly professional service from start to finish. The design exceeded
             our expectations, and where others quoted us a 5-week lead time, DNA delivered within just one week.
-            We highly recommend their services and look forward to working together again in the future
+            We highly recommend their services and look forward to working together again in the future.
           </p>
-          <p class="text-xs mt-4" style="color:#555;font-family:var(--font-display);letter-spacing:0.1em;text-transform:uppercase;">
+          <p class="text-xs mt-4" style="color:#999; font-family:var(--font-heading); letter-spacing:0.1em; text-transform:uppercase;">
             — Hands & Heart RFC, Cape Town
           </p>
         </div>
@@ -340,183 +749,123 @@
         <div class="testimonial-card">
           <div class="testimonial-title">Going Beyond the Call of Duty</div>
           <p class="testimonial-body">
-            Kuilsriver Rugby Football Club extends our sincere appreciation to DNA Sportswear for ensuring our 
+            Kuilsriver Rugby Football Club extends our sincere appreciation to DNA Sportswear for ensuring our
             playing kit was ready ahead of the 2026 WPRFU Super League A fixtures.
-            Your commitment to excellence in design, manufacturing, and delivery of high-performance sportswear has been 
+            Your commitment to excellence in design, manufacturing, and delivery of high-performance sportswear has been
             truly outstanding. We proudly recommend your services and look forward to building a long and successful partnership.
           </p>
-          <p class="text-xs mt-4" style="color:#555;font-family:var(--font-display);letter-spacing:0.1em;text-transform:uppercase;">
-            — Kuilsrivier Rugby Football Club, Cape Town
+          <p class="text-xs mt-4" style="color:#999; font-family:var(--font-heading); letter-spacing:0.1em; text-transform:uppercase;">
+            — Kuilsrivier RFC, Cape Town
           </p>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-title">Premium Quality That Stands Out</div>
           <p class="testimonial-body">
-            From concept to final delivery, DNA Sportswear delivered a seamless experience. The quality of the kits, attention to detail, 
-            and overall professionalism set them apart from other suppliers we’ve worked with.
-            Our players feel confident and proud wearing their gear, and we’ve received countless 
-            compliments on the design. DNA Sportswear is our go-to partner moving forward.
+            Palm Park Primary wants to reach out to DNA Sportswear to thank them for an awesome design and cut for our
+            u13 boys rugby team's jerseys as well as the apparel for our coaches. Thank you for delivering excellent services
+            and always making the deadline a week before the time. Great service, great customer relations and awesome quality
+            clothing! We highly recommend their service.
           </p>
-          <p class="text-xs mt-4" style="color:#555;font-family:var(--font-display);letter-spacing:0.1em;text-transform:uppercase;">
-            — Atlantic Storm Rugby Club, Durban
+          <p class="text-xs mt-4" style="color:#999; font-family:var(--font-heading); letter-spacing:0.1em; text-transform:uppercase;">
+            — Palm Park Primary, Cape Town
           </p>
         </div>
 
       </div>
     </div>
-  </section>
-
-
-  <!-- ============================================================
-       LATEST NEWS
-       Update the articles — or remove this section if not needed
-       ============================================================ -->
-  <!--<section class="section-pad bg-black">
-    <div class="max-w">
-
-      <div class="flex items-end justify-between mb-10" data-reveal>
-        <div>
-          <span class="section-label">Blog & Updates</span>
-          <h2 class="section-title">Latest <span>News</span></h2>
-          <div class="red-line"></div>
-        </div>
-        <a href="news.html" class="btn-outline-red hidden md:inline-block">View All</a>
-      </div>
-
-      <!-- EDIT: Replace with your real blog posts 
-      <div class="grid md:grid-cols-3 gap-6" data-reveal>
-
-        <a href="news.html" class="news-card">
-          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=80"
-               alt="News post" loading="lazy" />
-          <div class="news-card-body">
-            <span class="news-card-date">June 2026</span>
-            <div class="news-card-title">How to Choose the Right Kit for Your Team's First Season</div>
-          </div>
-        </a>
-
-        <a href="news.html" class="news-card">
-          <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&auto=format&fit=crop&q=80"
-               alt="News post" loading="lazy" />
-          <div class="news-card-body">
-            <span class="news-card-date">May 2026</span>
-            <div class="news-card-title">Why Sublimation Printing Produces Better Teamwear Results</div>
-          </div>
-        </a>
-
-        <a href="news.html" class="news-card">
-          <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&auto=format&fit=crop&q=80"
-               alt="News post" loading="lazy" />
-          <div class="news-card-body">
-            <span class="news-card-date">April 2026</span>
-            <div class="news-card-title">Fast Turnaround Teamwear: Avoiding the Stress of Last-Minute Orders</div>
-          </div>
-        </a>
-
-      </div>
-
-      <!-- Mobile view-all link 
-      <div class="text-center mt-8 md:hidden">
-        <a href="news.html" class="btn-outline-red">View All News</a>
-      </div>
-
-    </div>-->
   </section>
 
 
   <!-- ============================================================
        CTA BAND
-       Edit the heading, sub-line and button text
        ============================================================ -->
   <div class="cta-band">
     <h2>Ready to Create<br>Your Kit?</h2>
     <p>Fully custom · Made locally · Delivered in 3 weeks</p>
-    <a href="contact.html" class="btn-outline" style="position:relative;z-index:1;">Get a Free Quote</a>
+    <a href="contact.html" class="btn-outline">Get a Free Quote</a>
   </div>
 
 
   <!-- ============================================================
        FOOTER
-       EDIT: Your company name, address, social links, footer links
        ============================================================ -->
   <footer>
     <div class="max-w px-6 py-16">
       <div class="grid md:grid-cols-4 gap-12">
 
-        <!-- Col 1: Brand -->
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
-          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
-            <!-- EDIT: one-line description -->
+          <!-- Footer logo image — same logo, on dark background -->
+          <a href="index.html" class="footer-logo">
+            DNA<span>SPORTSWEAR</span>
+          </a>
+          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem; line-height:1.7;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
-          <!-- EDIT: Social links — replace # with your real URLs -->
           <div class="flex gap-2">
             <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <!--<a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>-->
           </div>
         </div>
 
-        <!-- Col 2: Sports -->
         <div>
           <div class="footer-heading">Sports</div>
-          <a href="rugby.html"      class="footer-link">Rugby</a>
-          <a href="soccer.html"     class="footer-link">Soccer</a>
-          <a href="athletics.html"    class="footer-link">Athletics</a>
-          <a href="cricket.html"    class="footer-link">Cricket</a>
-          <!--<a href="running.html"    class="footer-link">Running & Athletics</a>
-          <a href="multisports.html"class="footer-link">Multisports</a>-->
+          <a href="rugby.html"     class="footer-link">Rugby</a>
+          <a href="soccer.html"    class="footer-link">Soccer</a>
+          <a href="athletics.html" class="footer-link">Athletics</a>
+          <a href="cricket.html"   class="footer-link">Cricket</a>
         </div>
 
-        <!-- Col 3: Company -->
         <div>
           <div class="footer-heading">Company</div>
-          <a href="about.html"     class="footer-link">Our Story</a>
-          <a href="process.html"   class="footer-link">How We Work</a>
-          <a href="contact.html"   class="footer-link">Contact Us</a>
-          <!--<a href="news.html"      class="footer-link">News</a>
-          <a href="careers.html"   class="footer-link">Careers</a>-->
+          <a href="about.html"   class="footer-link">Our Story</a>
+          <a href="process.html" class="footer-link">How We Work</a>
+          <a href="contact.html" class="footer-link">Contact Us</a>
         </div>
 
-        <!-- Col 4: Customer Service -->
         <div>
           <div class="footer-heading">Customer Service</div>
-          <a href="footer/size-guide.html"     class="footer-link">Size Guide</a>
-          <a href="footer/faqs.html"           class="footer-link">FAQs</a>
-          <a href="footer/delivery.html"       class="footer-link">Ordering & Delivery</a>
-          <a href="footer/terms.html"          class="footer-link">Terms & Conditions</a>
-          <a href="footer/privacy.html"        class="footer-link">Privacy Policy</a>
-          <!-- EDIT: Your phone number -->
-          <a href="tel:+27696096529"    class="footer-link mt-4">
-            <i class="fas fa-phone mr-2 text-red-600"></i>+27 (0)69 609 6529
+          <a href="footer/size-guide.html"  class="footer-link">Size Guide</a>
+          <a href="footer/faqs.html"        class="footer-link">FAQs</a>
+          <a href="footer/delivery.html"    class="footer-link">Ordering & Delivery</a>
+          <a href="footer/terms.html"       class="footer-link">Terms & Conditions</a>
+          <a href="footer/privacy.html"     class="footer-link">Privacy Policy</a>
+          <a href="tel:+27696096529"        class="footer-link mt-4">
+            <i class="fas fa-phone mr-2" style="color:var(--color-red);"></i>+27 (0)69 609 6529
           </a>
-          <!-- EDIT: Your email -->
           <a href="mailto:info.dnasportswear.co.za" class="footer-link">
-            <i class="fas fa-envelope mr-2 text-red-600"></i>info.dnasportswear.co.za
+            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info.dnasportswear.co.za
           </a>
         </div>
 
       </div>
 
-      <!-- Bottom bar -->
-      <div class="border-t border-gray-800 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
-        <!-- EDIT: Your company name, reg number and address -->
+      <div class="border-t mt-12 pt-6 flex flex-wrap justify-between items-center gap-3" style="border-color:#222;">
         <p class="text-grey text-xs">
           © 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa
         </p>
-        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">
-          Admin ↗
-        </a>
+        <a href="admin/dashboard.html" class="text-grey text-xs" style="opacity:0.35;">Admin ↗</a>
       </div>
     </div>
   </footer>
 
 
-  <!-- JavaScript -->
-  <script src="js/main.js"></script>
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
