@@ -187,6 +187,7 @@
     .hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100dvh; /* avoids mobile address-bar jump/clipping */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -194,12 +195,20 @@
       padding-top: 64px;
       overflow: hidden;
     }
+
+    @media (max-width: 767px) {
+      .hero {
+        min-height: 85vh;
+        min-height: 85dvh;
+      }
+    }
     .hero-bg {
       position: absolute;
       inset: 0;
       background-image: url('images/HeroBanner2.png');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       filter: brightness(1.05);
     }
     .hero-bg::after {
@@ -207,6 +216,42 @@
       position: absolute;
       inset: 0;
       background: rgba(255,255,255,0.55);
+    }
+
+    /* ── RESPONSIVE HERO BACKGROUND ──
+       Swap in a differently-cropped image per breakpoint so the subject
+       stays framed well at every size. If you only have one source image,
+       leave the url() as-is on each rule and just the position/size will adapt. */
+
+    /* Mobile (default, up to 767px): portrait-friendly crop, taller focal area */
+    .hero-bg {
+      background-image: url('images/HeroBanner2-mobile.png'), url('images/HeroBanner2.png');
+      background-position: center 30%;
+    }
+
+    /* Tablet (768px–1023px) */
+    @media (min-width: 768px) {
+      .hero-bg {
+        background-image: url('images/HeroBanner2-tablet.png'), url('images/HeroBanner2.png');
+        background-position: center 40%;
+        background-attachment: scroll;
+      }
+    }
+
+    /* Laptop / desktop (1024px and up) */
+    @media (min-width: 1024px) {
+      .hero-bg {
+        background-image: url('images/HeroBanner2.png');
+        background-position: center;
+        background-attachment: fixed;
+      }
+    }
+
+    /* Large desktop (1440px and up): allow a touch more headroom */
+    @media (min-width: 1440px) {
+      .hero-bg {
+        background-position: center top;
+      }
     }
     .hero-content {
       position: relative;
