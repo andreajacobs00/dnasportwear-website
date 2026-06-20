@@ -24,6 +24,123 @@
       }
     }
   </script>
+
+  <!-- ============================================================
+       COLOR + FONT OVERRIDE BLOCK
+       Inverts the dark theme to a light theme (black <-> white swap).
+       Red brand color (--color-red / .text-red / border accents) is
+       left untouched on purpose.
+
+       NOTE: "Gotham Medium" is a paid font (Hoefler & Co.) and is not
+       available on any free CDN. It's referenced below with safe
+       fallbacks. If you have licensed font files, add an @font-face
+       rule pointing to them (e.g. /fonts/Gotham-Medium.woff2) and the
+       declarations below will pick it up automatically.
+       ============================================================ -->
+  <style>
+    /*
+    @font-face {
+      font-family: 'Gotham Medium';
+      src: url('fonts/Gotham-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+    }
+    */
+
+    :root {
+      /* Backgrounds: dark -> white */
+      --color-dark: #ffffff;
+      --color-black: #ffffff;
+      --color-charcoal: #f1f1f1;
+
+      /* Red stays exactly as-is */
+      --color-red: #e8132a;
+
+      /* Fonts */
+      --font-display: 'Gotham Medium', 'Gotham', Arial, sans-serif;
+      --font-body: Arial, Helvetica, sans-serif;
+    }
+
+    html, body {
+      background: #ffffff !important;
+      color: #0a0a0a !important;
+      font-family: var(--font-body) !important;
+    }
+
+    /* Generic background classes used throughout the page */
+    .bg-dark, .bg-black, .bg-charcoal,
+    #navbar, footer, .cta-band,
+    #mobile-menu, .dropdown-menu {
+      background-color: #ffffff !important;
+      color: #0a0a0a !important;
+    }
+
+    /* Headings -> Gotham Medium */
+    h1, h2, h3, h4, h5, h6,
+    .section-title, .nav-logo, .footer-logo, .footer-heading,
+    .step-title, .stat-big, .nav-link, .mobile-nav-link,
+    .footer-link, [style*="font-display"] {
+      font-family: var(--font-display) !important;
+      color: #0a0a0a !important;
+    }
+
+    /* Body copy / paragraphs -> Arial */
+    p, span, li, a, .text-grey, .step-body {
+      font-family: var(--font-body) !important;
+    }
+
+    /* Muted/grey paragraph text: keep it readable on white */
+    .text-grey {
+      color: #444444 !important;
+    }
+
+    /* Card / panel backgrounds that were dark charcoal -> light grey */
+    .value-card,
+    [style*="background:var(--color-charcoal)"],
+    [style*="background: var(--color-charcoal)"] {
+      background-color: var(--color-charcoal) !important;
+      color: #0a0a0a !important;
+    }
+
+    /* Borders/dividers that were dark -> light grey, keep red ones red */
+    .border-t.border-gray-800 {
+      border-color: #dddddd !important;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background-color: var(--color-red) !important;
+      color: #ffffff !important;
+    }
+    .btn-outline {
+      background-color: transparent !important;
+      color: #0a0a0a !important;
+      border-color: #0a0a0a !important;
+    }
+
+    /* Social icons */
+    .social-link {
+      background-color: #f1f1f1 !important;
+      color: #0a0a0a !important;
+    }
+
+    /* Timeline */
+    .timeline-content h4 { color: #0a0a0a !important; }
+    .timeline-content p { color: #444444 !important; }
+
+    /* Red elements stay red — explicitly re-asserted so overrides above don't touch them */
+    .text-red,
+    [style*="color:var(--color-red)"],
+    [style*="color: var(--color-red)"],
+    .red-line,
+    .nav-logo span,
+    .footer-logo span {
+      color: var(--color-red) !important;
+    }
+    .red-line {
+      background-color: var(--color-red) !important;
+    }
+  </style>
 </head>
 
 <body class="page-fade">
@@ -94,7 +211,7 @@
           We Make Kit<br>That <span style="color:var(--color-red);">Means</span><br>Something.
         </h1>
         <div class="red-line"></div>
-        <p class="mt-4" style="color:#aaa;font-size:1rem;line-height:1.7;max-width:520px;">
+        <p class="mt-4" style="color:#444;font-size:1rem;line-height:1.7;max-width:520px;">
           <!-- EDIT: Your elevator pitch — 1–2 sentences -->
           Born from frustration with slow lead times and cookie-cutter design, we set out
           to build a teamwear brand that puts the team first. Every time.
@@ -154,28 +271,28 @@
         <!-- EDIT: Replace numbers with your real stats -->
         <div style="background:var(--color-charcoal);padding:2rem;border-top:3px solid var(--color-red);">
           <div class="stat-big">500+</div>
-          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">
+          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-top:0.5rem;">
             Teams Kitted Out
           </div>
         </div>
 
         <div style="background:var(--color-charcoal);padding:2rem;border-top:3px solid var(--color-red);">
           <div class="stat-big">3wk</div>
-          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">
+          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-top:0.5rem;">
             Average Turnaround
           </div>
         </div>
 
         <div style="background:var(--color-charcoal);padding:2rem;border-top:3px solid var(--color-red);">
           <div class="stat-big">60+</div>
-          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">
+          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-top:0.5rem;">
             Sports Covered
           </div>
         </div>
 
         <div style="background:var(--color-charcoal);padding:2rem;border-top:3px solid var(--color-red);">
           <div class="stat-big">5★</div>
-          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-top:0.5rem;">
+          <div style="font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-top:0.5rem;">
             Average Review Score
           </div>
         </div>
@@ -328,83 +445,6 @@
 
 
   <!-- ============================================================
-       TEAM SECTION
-       Add or remove team member cards as needed
-       ============================================================ 
-  <section class="section-pad bg-black">
-    <div class="max-w">
-
-      <div class="text-center mb-12" data-reveal>
-        <span class="section-label">The People</span>
-        <h2 class="section-title">Meet the <span>Team</span></h2>
-        <div class="red-line center"></div>
-      </div>
-
-      <!-- EDIT: Replace with real team member names, roles, and photos 
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" data-reveal>
-
-        <!-- Team member card template — duplicate for each person
-        <div style="text-align:center;">
-          <!--
-            Replace the src with a real headshot.
-            Tip: keep all photos the same dimensions (e.g. 400×500) for consistency.
-          
-          <div style="background:var(--color-charcoal);aspect-ratio:4/5;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-            <span style="font-size:4rem;opacity:0.15;">👤</span>
-            <!-- When you have a real photo:
-            <img src="images/team-[name].jpg" alt="[Name]" style="width:100%;height:100%;object-fit:cover;" />
-            
-          </div>
-          <div style="font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-            [Full Name]
-          </div>
-          <div class="text-red" style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.25rem;">
-            [Job Title]
-          </div>
-        </div>
-
-        <div style="text-align:center;">
-          <div style="background:var(--color-charcoal);aspect-ratio:4/5;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:4rem;opacity:0.15;">👤</span>
-          </div>
-          <div style="font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-            [Full Name]
-          </div>
-          <div class="text-red" style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.25rem;">
-            [Job Title]
-          </div>
-        </div>
-
-        <div style="text-align:center;">
-          <div style="background:var(--color-charcoal);aspect-ratio:4/5;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:4rem;opacity:0.15;">👤</span>
-          </div>
-          <div style="font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-            [Full Name]
-          </div>
-          <div class="text-red" style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.25rem;">
-            [Job Title]
-          </div>
-        </div>
-
-        <div style="text-align:center;">
-          <div style="background:var(--color-charcoal);aspect-ratio:4/5;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:4rem;opacity:0.15;">👤</span>
-          </div>
-          <div style="font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-            [Full Name]
-          </div>
-          <div class="text-red" style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.25rem;">
-            [Job Title]
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>-->
-
-
-  <!-- ============================================================
        MILESTONES / TIMELINE
        Edit years and milestones — add rows as your story grows
        ============================================================ -->
@@ -459,9 +499,9 @@
 
         <!-- EDIT: Add future milestone when it happens -->
         <div class="timeline-item">
-          <div class="timeline-year" style="color:#555;">2026</div>
+          <div class="timeline-year" style="color:#999;">2026</div>
           <div class="timeline-content">
-            <h4 style="color:#555;">Next Chapter →</h4>
+            <h4 style="color:#999;">Next Chapter →</h4>
             <p>International expansion in progress. Watch this space.</p>
           </div>
         </div>
@@ -480,7 +520,7 @@
 
       <div style="background:var(--color-charcoal);padding:3rem;border-left:4px solid var(--color-red);position:relative;overflow:hidden;" data-reveal>
 
-        <div style="position:absolute;top:-2rem;right:-2rem;font-family:var(--font-display);font-size:12rem;font-weight:900;color:rgba(232,19,42,0.04);line-height:1;user-select:none;">♻</div>
+        <div style="position:absolute;top:-2rem;right:-2rem;font-family:var(--font-display);font-size:12rem;font-weight:900;color:rgba(232,19,42,0.06);line-height:1;user-select:none;">♻</div>
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -500,28 +540,28 @@
           <!-- Sustainability stats — EDIT numbers -->
           <div class="grid grid-cols-2 gap-4">
 
-            <div style="text-align:center;padding:1.5rem;background:rgba(255,255,255,0.03);">
+            <div style="text-align:center;padding:1.5rem;background:rgba(0,0,0,0.03);">
               <div class="stat-big" style="font-size:2.5rem;">75%</div>
               <div style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-top:0.4rem;">
                 Locally Manufactured
               </div>
             </div>
 
-            <div style="text-align:center;padding:1.5rem;background:rgba(255,255,255,0.03);">
+            <div style="text-align:center;padding:1.5rem;background:rgba(0,0,0,0.03);">
               <div class="stat-big" style="font-size:2.5rem;">0</div>
               <div style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-top:0.4rem;">
                 Waste to Landfill Goal
               </div>
             </div>
 
-            <div style="text-align:center;padding:1.5rem;background:rgba(255,255,255,0.03);">
+            <div style="text-align:center;padding:1.5rem;background:rgba(0,0,0,0.03);">
               <div class="stat-big" style="font-size:2.5rem;">50+</div>
               <div style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-top:0.4rem;">
                 Local Jobs Supported
               </div>
             </div>
 
-            <div style="text-align:center;padding:1.5rem;background:rgba(255,255,255,0.03);">
+            <div style="text-align:center;padding:1.5rem;background:rgba(0,0,0,0.03);">
               <div class="stat-big" style="font-size:2.5rem;">3yr</div>
               <div style="font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-top:0.4rem;">
                 Kit Durability Guarantee
