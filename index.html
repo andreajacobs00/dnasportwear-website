@@ -183,7 +183,7 @@
     }
     .btn-outline:hover { border-color: var(--color-red); color: var(--color-red) !important; transform: translateY(-1px); }
 
-    /* ── HERO (keeps image bg) ── */
+    /* ── HERO (background image, white panel + black text) ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -200,7 +200,13 @@
       background-image: url('images/HeroBanner2.png');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.45);
+      filter: brightness(1.05);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.55);
     }
     .hero-content {
       position: relative;
@@ -223,7 +229,7 @@
       font-size: clamp(3rem, 8vw, 6.5rem);
       font-weight: 700;
       line-height: 1.0;
-      color: #ffffff;
+      color: #111111;
       text-transform: uppercase;
       letter-spacing: -0.01em;
       margin-bottom: 24px;
@@ -231,7 +237,7 @@
     .hero h1 span { color: var(--color-red); }
     .hero-sub {
       font-family: var(--font-body);
-      color: rgba(255,255,255,0.85);
+      color: rgba(17,17,17,0.85);
       font-size: 1rem;
       margin-bottom: 36px;
       letter-spacing: 0.05em;
@@ -409,19 +415,20 @@
       background: #fff;
     }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER (white background, black text) ── */
     footer {
-      background: #111;
-      color: #fff;
+      background: #ffffff;
+      color: #111111;
+      border-top: 1px solid var(--color-border);
     }
-    footer .text-grey { color: #888; }
+    footer .text-grey { color: #555555; }
     .footer-logo {
       font-family: var(--font-heading);
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #fff;
+      color: #111111;
       text-decoration: none;
     }
     .footer-logo span { color: var(--color-red); }
@@ -431,14 +438,14 @@
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #fff;
+      color: #111111;
       margin-bottom: 16px;
     }
     .footer-link {
       display: block;
       font-family: var(--font-body);
       font-size: 0.88rem;
-      color: #888;
+      color: #555555;
       text-decoration: none;
       margin-bottom: 8px;
       transition: color 0.2s;
@@ -449,9 +456,9 @@
       align-items: center;
       justify-content: center;
       width: 36px; height: 36px;
-      border: 1px solid #333;
+      border: 1px solid #ccc;
       border-radius: 50%;
-      color: #888;
+      color: #555555;
       text-decoration: none;
       font-size: 0.85rem;
       transition: border-color 0.2s, color 0.2s;
@@ -568,7 +575,7 @@
 
 
   <!-- ============================================================
-       HERO — background image + dark overlay, white text
+       HERO — background image + white overlay, black text
        ============================================================ -->
   <section class="hero">
     <div class="hero-bg"></div>
@@ -586,7 +593,7 @@
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="contact.html" class="btn-primary">Get a Quote</a>
-        <a href="about.html" class="btn-outline" style="border-color:#fff; color:#fff !important;">Our Story</a>
+        <a href="about.html" class="btn-outline" style="border-color:#111; color:#111 !important;">Our Story</a>
       </div>
     </div>
   </section>
@@ -796,7 +803,7 @@
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <!-- Footer logo image — same logo, on dark background -->
+          <!-- Footer logo image — same logo, on white background -->
           <a href="index.html" class="footer-logo">
             DNA<span>SPORTSWEAR</span>
           </a>
@@ -841,11 +848,11 @@
 
       </div>
 
-      <div class="border-t mt-12 pt-6 flex flex-wrap justify-between items-center gap-3" style="border-color:#222;">
+      <div class="border-t mt-12 pt-6 flex flex-wrap justify-between items-center gap-3" style="border-color:#ddd;">
         <p class="text-grey text-xs">
           © 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa
         </p>
-        <a href="admin/dashboard.html" class="text-grey text-xs" style="opacity:0.35;">Admin ↗</a>
+        <a href="admin/dashboard.html" class="text-grey text-xs" style="opacity:0.5;">Admin ↗</a>
       </div>
     </div>
   </footer>
