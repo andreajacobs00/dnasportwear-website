@@ -72,25 +72,29 @@
     }
     .btn-primary:hover { background: #c4101f; }
 
-    /* ── MOBILE MENU ── */
-    .mobile-menu {
+    /* ── MOBILE MENU — dna- prefixed IDs avoid conflicts with css/styles.css ── */
+    #dna-mobile-menu {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 99;
+      z-index: 999;
       background: rgba(255,255,255,0.98);
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2rem;
     }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu .nav-link {
+    #dna-mobile-menu.open { display: flex !important; }
+    #dna-mobile-menu a {
+      font-family: 'Gotham', Arial, sans-serif;
       font-size: 1.5rem;
       font-weight: 800;
-      color: #0a0a0a;
+      color: #0a0a0a !important;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
-    .menu-toggle {
+    #dna-menu-toggle {
       background: none;
       border: none;
       color: #0a0a0a;
@@ -98,6 +102,16 @@
       cursor: pointer;
       display: flex;
       align-items: center;
+    }
+    #dna-menu-close {
+      position: absolute;
+      top: 1.4rem; right: 1.5rem;
+      background: none;
+      border: none;
+      color: #0a0a0a;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
     }
 
     /* ── CONTACT STYLES ── */
@@ -281,21 +295,21 @@
         <a href="about.html"  class="nav-link">About</a>
       </div>
       <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
-      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+      <button id="dna-menu-toggle" class="md:hidden" aria-label="Open menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+  <!-- Mobile menu — unique IDs so css/styles.css and js/main.js can't interfere -->
+  <div id="dna-mobile-menu">
+    <button id="dna-menu-close" aria-label="Close menu">
       <i class="fas fa-times"></i>
     </button>
-    <a href="sports.html" class="nav-link">Sports</a>
-    <a href="ranges.html" class="nav-link">Ranges</a>
-    <a href="about.html"  class="nav-link">About</a>
-    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+    <a href="sports.html">Sports</a>
+    <a href="ranges.html">Ranges</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="btn-primary" style="margin-top:0.5rem;">Enquire Now</a>
   </div>
 
 
@@ -434,10 +448,18 @@
   <script src="js/main.js"></script>
 
   <script>
-    /* Mobile nav */
-    const mobileMenu = document.getElementById('mobile-menu');
-    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
-    document.getElementById('menu-close').addEventListener('click',  () => mobileMenu.classList.remove('open'));
+    /* Mobile nav — IIFE with dna- IDs, isolated from js/main.js */
+    (function() {
+      var menu   = document.getElementById('dna-mobile-menu');
+      var opener = document.getElementById('dna-menu-toggle');
+      var closer = document.getElementById('dna-menu-close');
+      if (!menu || !opener || !closer) return;
+      opener.addEventListener('click', function() { menu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+      closer.addEventListener('click', function() { menu.classList.remove('open'); document.body.style.overflow = ''; });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('open')) { menu.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+    })();
 
     /* Form validation */
     function handleSubmit() {
