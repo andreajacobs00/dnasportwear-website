@@ -8,12 +8,9 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Barlow Condensed (fallback display) + Barlow (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
@@ -34,7 +31,6 @@
   </script>
 
   <style>
-    /* ── Gotham Medium via system/web-safe fallback stack ── */
     @font-face {
       font-family: 'Gotham';
       src: local('Gotham Medium'), local('GothamMedium'), local('Gotham-Medium');
@@ -53,9 +49,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--color-bg);
       color: var(--color-text);
@@ -67,22 +61,17 @@
     /* ── TYPOGRAPHY ── */
     h1, h2, h3, h4, h5, h6,
     .section-title, .section-label, .nav-logo, .footer-logo,
-    .usp-title, .testimonial-title, .news-card-title, .sport-card-label,
+    .usp-title, .testimonial-title, .sport-card-label,
     .hero-eyebrow, .btn-primary, .btn-outline, .footer-heading {
       font-family: var(--font-heading);
     }
 
-    p, li, a, span, .text-grey, .testimonial-body {
-      font-family: var(--font-body);
-    }
+    /* ── LAYOUT ── */
+    .max-w        { max-width: 1200px; margin: 0 auto; }
+    .max-w-narrow { max-width: 640px; }
+    .section-pad  { padding: 80px 24px; }
+    .text-grey    { color: var(--color-muted); }
 
-    /* ── LAYOUT HELPERS ── */
-    .max-w         { max-width: 1200px; margin: 0 auto; }
-    .max-w-narrow  { max-width: 640px; }
-    .section-pad   { padding: 80px 24px; }
-    .text-grey     { color: var(--color-muted); }
-
-    /* ── NAVBAR ── */
     /* ── NAV ── */
     #navbar {
       position: fixed;
@@ -93,9 +82,8 @@
       border-bottom: 1px solid rgba(0,0,0,0.08);
       padding: 0.9rem 0;
     }
-    .max-w { max-width: 1200px; margin: 0 auto; }
     .nav-logo {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: 1.3rem;
       letter-spacing: 0.08em;
@@ -104,7 +92,7 @@
     }
     .nav-logo span { color: var(--color-red); }
     .nav-link {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -114,20 +102,34 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
-    .btn-primary {
-      display: inline-block;
-      background: var(--color-red);
-      color: #fff;
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      padding: 0.55rem 1.3rem;
-      text-decoration: none;
-      transition: background 0.2s;
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: rgba(255,255,255,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
     }
-    .btn-primary:hover { background: #c4101f; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0a0a0a;
+    }
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: #0a0a0a;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
 
     /* ── BUTTONS ── */
     .btn-primary {
@@ -162,11 +164,11 @@
     }
     .btn-outline:hover { border-color: var(--color-red); color: var(--color-red) !important; transform: translateY(-1px); }
 
-    /* ── HERO (background image, white panel + black text) ── */
+    /* ── HERO ── */
     .hero {
       position: relative;
       min-height: 100vh;
-      min-height: 100dvh; /* avoids mobile address-bar jump/clipping */
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -174,19 +176,15 @@
       padding-top: 64px;
       overflow: hidden;
     }
-
     @media (max-width: 767px) {
-      .hero {
-        min-height: 85vh;
-        min-height: 85dvh;
-      }
+      .hero { min-height: 85vh; min-height: 85dvh; }
     }
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('images/HeroBanner2.png');
+      background-image: url('images/HeroBanner2-mobile.png'), url('images/HeroBanner2.png');
       background-size: cover;
-      background-position: center;
+      background-position: center 30%;
       background-repeat: no-repeat;
       filter: brightness(1.05);
     }
@@ -196,19 +194,6 @@
       inset: 0;
       background: rgba(255,255,255,0.55);
     }
-
-    /* ── RESPONSIVE HERO BACKGROUND ──
-       Swap in a differently-cropped image per breakpoint so the subject
-       stays framed well at every size. If you only have one source image,
-       leave the url() as-is on each rule and just the position/size will adapt. */
-
-    /* Mobile (default, up to 767px): portrait-friendly crop, taller focal area */
-    .hero-bg {
-      background-image: url('images/HeroBanner2-mobile.png'), url('images/HeroBanner2.png');
-      background-position: center 30%;
-    }
-
-    /* Tablet (768px–1023px) */
     @media (min-width: 768px) {
       .hero-bg {
         background-image: url('images/HeroBanner2-tablet.png'), url('images/HeroBanner2.png');
@@ -216,8 +201,6 @@
         background-attachment: scroll;
       }
     }
-
-    /* Laptop / desktop (1024px and up) */
     @media (min-width: 1024px) {
       .hero-bg {
         background-image: url('images/HeroBanner2.png');
@@ -225,12 +208,8 @@
         background-attachment: fixed;
       }
     }
-
-    /* Large desktop (1440px and up): allow a touch more headroom */
     @media (min-width: 1440px) {
-      .hero-bg {
-        background-position: center top;
-      }
+      .hero-bg { background-position: center top; }
     }
     .hero-content {
       position: relative;
@@ -328,7 +307,7 @@
     }
     .red-line.center { margin: 0 auto 24px; }
 
-    /* ── INTRO SECTION ── */
+    /* ── INTRO ── */
     .bg-intro { background: #f7f7f7; }
 
     /* ── USP CARDS ── */
@@ -439,7 +418,7 @@
       background: #fff;
     }
 
-    /* ── FOOTER (white background, black text) ── */
+    /* ── FOOTER ── */
     footer {
       background: #ffffff;
       color: #111111;
@@ -489,38 +468,10 @@
     }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
 
-    /* ── MOBILE MENU ── */
-    #mobile-menu {
-      display: none;
-      flex-direction: column;
-      position: fixed;
-      top: 64px; left: 0; right: 0;
-      background: #fff;
-      border-top: 1px solid var(--color-border);
-      z-index: 99;
-      padding: 8px 0 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    }
-    #mobile-menu.open { display: flex; }
-    .mobile-nav-link {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-text);
-      text-decoration: none;
-      padding: 14px 24px;
-      border-bottom: 1px solid #f0f0f0;
-      transition: color 0.2s;
-    }
-    .mobile-nav-link:hover { color: var(--color-red); }
-
-    /* ── REVEAL ANIMATION ── */
+    /* ── REVEAL ── */
     [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     [data-reveal].visible { opacity: 1; transform: none; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 767px) {
       .section-pad { padding: 56px 20px; }
     }
@@ -529,15 +480,12 @@
 
 <body>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
       <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="sports.html"  class="nav-link" style="color:#0a0a0a;">Sports</a>
+        <a href="sports.html"  class="nav-link">Sports</a>
         <a href="ranges.html"  class="nav-link">Ranges</a>
         <a href="about.html"   class="nav-link">About</a>
       </div>
@@ -559,31 +507,8 @@
     <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
   </div>
 
-      <!-- CTA + Hamburger -->
-      <div class="flex items-center gap-4">
-        <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
-        <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Toggle menu" aria-expanded="false" style="color:#111;">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu">
-    <a href="index.html"   class="mobile-nav-link">Home</a>
-    <a href="sports.html"  class="mobile-nav-link">Sports</a>
-    <a href="ranges.html"  class="mobile-nav-link">Ranges</a>
-    <a href="about.html"   class="mobile-nav-link">About</a>
-    <a href="contact.html" class="mobile-nav-link" style="color:var(--color-red);">Enquire Now →</a>
-  </div>
-
-
-  <!-- ============================================================
-       HERO — background image + white overlay, black text
-       ============================================================ -->
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -606,9 +531,7 @@
   </section>
 
 
-  <!-- ============================================================
-       STATS TICKER
-       ============================================================ -->
+  <!-- ── STATS TICKER ── -->
   <div class="stats-strip">
     <div class="stats-ticker">
       <span class="stats-ticker-item">Made Locally</span>
@@ -632,9 +555,7 @@
   </div>
 
 
-  <!-- ============================================================
-       INTRO SECTION — white bg, black text
-       ============================================================ -->
+  <!-- ── INTRO ── -->
   <section class="section-pad bg-intro">
     <div class="max-w grid md:grid-cols-2 gap-12 items-center px-6">
 
@@ -657,7 +578,6 @@
         </div>
       </div>
 
-      <!-- USP grid -->
       <div class="grid grid-cols-2 gap-4" data-reveal>
         <div class="usp-card">
           <span class="usp-icon">🇿🇦</span>
@@ -684,9 +604,7 @@
   </section>
 
 
-  <!-- ============================================================
-       SPORTS GRID
-       ============================================================ -->
+  <!-- ── SPORTS GRID ── -->
   <section id="sports" class="section-pad bg-sports">
     <div class="max-w px-6">
 
@@ -734,9 +652,7 @@
   </section>
 
 
-  <!-- ============================================================
-       TESTIMONIALS
-       ============================================================ -->
+  <!-- ── TESTIMONIALS ── -->
   <section class="section-pad bg-testimonials">
     <div class="max-w px-6">
 
@@ -792,9 +708,7 @@
   </section>
 
 
-  <!-- ============================================================
-       CTA BAND
-       ============================================================ -->
+  <!-- ── CTA BAND ── -->
   <div class="cta-band">
     <h2>Ready to Create<br>Your Kit?</h2>
     <p>Fully custom · Made locally · Delivered in 3 weeks</p>
@@ -802,18 +716,13 @@
   </div>
 
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
+  <!-- ── FOOTER ── -->
   <footer>
     <div class="max-w px-6 py-16">
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <!-- Footer logo image — same logo, on white background -->
-          <a href="index.html" class="footer-logo">
-            DNA<span>SPORTSWEAR</span>
-          </a>
+          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
           <p class="text-grey mt-4 mb-6" style="font-size:0.85rem; line-height:1.7;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
@@ -842,14 +751,14 @@
           <div class="footer-heading">Customer Service</div>
           <a href="footer/size-guide.html"  class="footer-link">Size Guide</a>
           <a href="footer/faqs.html"        class="footer-link">FAQs</a>
-          <a href="footer/delivery.html"    class="footer-link">Ordering & Delivery</a>
-          <a href="footer/terms.html"       class="footer-link">Terms & Conditions</a>
+          <a href="footer/delivery.html"    class="footer-link">Ordering &amp; Delivery</a>
+          <a href="footer/terms.html"       class="footer-link">Terms &amp; Conditions</a>
           <a href="footer/privacy.html"     class="footer-link">Privacy Policy</a>
-          <a href="tel:+27696096529"        class="footer-link mt-4">
+          <a href="tel:+27696096529" class="footer-link mt-4">
             <i class="fas fa-phone mr-2" style="color:var(--color-red);"></i>+27 (0)69 609 6529
           </a>
-          <a href="mailto:info.dnasportswear.co.za" class="footer-link">
-            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info.dnasportswear.co.za
+          <a href="mailto:info@dnasportswear.co.za" class="footer-link">
+            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info@dnasportswear.co.za
           </a>
         </div>
 
@@ -866,20 +775,18 @@
 
 
   <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menu-btn');
+    /* Mobile nav */
     const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', isOpen);
-    });
+    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
+    document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('[data-reveal]');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    /* Scroll reveal */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
     }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
   </script>
 
 </body>
