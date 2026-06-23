@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
@@ -32,7 +31,6 @@
   </script>
 
   <style>
-    /* ── Design tokens ── */
     :root {
       --color-red:      #e8132a;
       --color-dark:     #111111;
@@ -52,7 +50,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV (copied from main site) ── */
+    /* ── NAV ── */
     #navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -78,7 +76,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       font-size: 0.82rem;
-      color: rgba(10,10,10,0.7);
+      color: rgba(10,10,10,0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -98,7 +96,35 @@
     }
     .btn-primary:hover { background: #c4101f; }
 
-    /* ── PAGE HERO (compact) ── */
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: rgba(255,255,255,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0a0a0a;
+    }
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: #0a0a0a;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── PAGE HERO ── */
     .page-hero {
       padding: 8rem 1.5rem 4rem;
       background: #f4f4f4;
@@ -169,10 +195,7 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .filter-btn:hover {
-      border-color: var(--color-red);
-      color: #0a0a0a;
-    }
+    .filter-btn:hover { border-color: var(--color-red); color: #0a0a0a; }
     .filter-btn.active {
       background: var(--color-red);
       border-color: var(--color-red);
@@ -180,9 +203,7 @@
     }
 
     /* ── MASONRY GALLERY ── */
-    .gallery-section {
-      padding: 0 1.5rem 5rem;
-    }
+    .gallery-section { padding: 0 1.5rem 5rem; }
     .gallery-grid {
       columns: 1;
       column-gap: 0.75rem;
@@ -236,11 +257,6 @@
       font-size: 0.65rem;
       letter-spacing: 0.18em;
       margin-bottom: 0.15rem;
-    }
-
-    /* Wide featured item (spans visually via taller image) */
-    .gallery-item.featured img {
-      /* natural tall crop — masonry handles the rest */
     }
 
     /* ── LIGHTBOX ── */
@@ -314,10 +330,8 @@
       inset: 0;
       background: repeating-linear-gradient(
         -45deg,
-        transparent,
-        transparent 20px,
-        rgba(0,0,0,0.04) 20px,
-        rgba(0,0,0,0.04) 40px
+        transparent, transparent 20px,
+        rgba(0,0,0,0.04) 20px, rgba(0,0,0,0.04) 40px
       );
     }
     .cta-band h2 {
@@ -356,7 +370,7 @@
     }
     .btn-outline:hover { background: #fff; color: var(--color-red); }
 
-    /* ── FOOTER (minimal, matching main) ── */
+    /* ── FOOTER ── */
     footer {
       background: #f4f4f4;
       border-top: 1px solid rgba(0,0,0,0.08);
@@ -401,18 +415,15 @@
     }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
 
-    /* ── REVEAL ANIMATION ── */
+    /* ── REVEAL ── */
     [data-reveal] {
       opacity: 0;
       transform: translateY(22px);
       transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    [data-reveal].visible {
-      opacity: 1;
-      transform: none;
-    }
+    [data-reveal].visible { opacity: 1; transform: none; }
 
-    /* ── UPLOAD PLACEHOLDER CARDS ── */
+    /* ── UPLOAD PLACEHOLDERS ── */
     .upload-placeholder {
       background: #f4f4f4;
       border: 1.5px dashed rgba(0,0,0,0.15);
@@ -445,8 +456,22 @@
         <a href="about.html"  class="nav-link">About</a>
       </div>
       <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="sports.html" class="nav-link">Sports</a>
+    <a href="ranges.html" class="nav-link">Ranges</a>
+    <a href="about.html"  class="nav-link">About</a>
+    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+  </div>
 
 
   <!-- ── PAGE HERO ── -->
@@ -462,21 +487,8 @@
     </div>
   </div>
 
-  <!--<div class="sport-tabs">
-    <a href="rugby.html"     class="sport-tab"><i class="fas fa-football-ball"></i> Rugby</a>
-    <a href="athletics.html" class="sport-tab"><i class="fas fa-running"></i> Athletics</a>
-    <a href="cricket.html"   class="sport-tab active"><i class="fas fa-baseball-ball"></i> Cricket</a>
-    <a href="soccer.html"    class="sport-tab"><i class="fas fa-futbol"></i> Soccer</a>
-  </div>-->
-
 
   <!-- ── FILTER BAR ── -->
-  <!--
-    HOW TO USE FILTERS:
-    Add a data-category="jerseys" (or "shorts", "training", "full-kit") attribute
-    to each .gallery-item below, then the JS below will show/hide them.
-    Remove this bar entirely if you don't need categories.
-  -->
   <div class="filter-bar" data-reveal>
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="jerseys">Jerseys</button>
@@ -487,27 +499,16 @@
 
 
   <!-- ── GALLERY ── -->
-  <!--
-    HOW TO ADD YOUR OWN IMAGES:
-    1. Copy one of the <a class="gallery-item"> blocks below.
-    2. Replace the img src with your own file path, e.g. src="images/rugby/jersey-01.jpg"
-    3. Update data-caption and the label text.
-    4. Add data-category="jerseys" (or another tag) if you're using filters.
-    5. Delete the placeholder blocks once you have real images.
-  -->
   <section class="gallery-section">
     <div class="gallery-grid" id="gallery-grid">
 
-      <!-- REAL IMAGE SLOT — replace src with your photo -->
       <a class="gallery-item" data-category="jerseys"
          data-caption="Club Jersey · Custom Sublimation"
          data-src="images/Image.jpg">
-        <img src="images/Image.jpg"
-             alt="Rugby jersey" loading="lazy" />
+        <img src="images/Image.jpg" alt="Rugby jersey" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Jerseys</span>
-            Club Jersey
+            <span>Jerseys</span>Club Jersey
           </div>
         </div>
       </a>
@@ -515,12 +516,10 @@
       <a class="gallery-item" data-category="full-kit"
          data-caption="Full Match Kit · Home & Away"
          data-src="images/Image4.jpg">
-        <img src="images/Image4.jpg"
-             alt="Full rugby kit" loading="lazy" />
+        <img src="images/Image4.jpg" alt="Full rugby kit" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Full Kit</span>
-            Home & Away Set
+            <span>Full Kit</span>Home & Away Set
           </div>
         </div>
       </a>
@@ -528,12 +527,10 @@
       <a class="gallery-item featured" data-category="jerseys"
          data-caption="Bespoke Match Jersey · Sublimation Print"
          data-src="images/Image3.jpg">
-        <img src="images/Image3.jpg"
-             alt="Rugby match jersey" loading="lazy" />
+        <img src="images/Image3.jpg" alt="Rugby match jersey" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Jerseys</span>
-            Match Jersey
+            <span>Jerseys</span>Match Jersey
           </div>
         </div>
       </a>
@@ -541,12 +538,10 @@
       <a class="gallery-item" data-category="training"
          data-caption="Training Tee · Performance Fabric"
          data-src="images/Image.jpg">
-        <img src="images/Image.jpg"
-             alt="Rugby training wear" loading="lazy" />
+        <img src="images/Image.jpg" alt="Rugby training wear" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Training</span>
-            Training Tee
+            <span>Training</span>Training Tee
           </div>
         </div>
       </a>
@@ -554,12 +549,10 @@
       <a class="gallery-item" data-category="shorts"
          data-caption="Match Shorts · Moisture-Wicking"
          data-src="images/Image.jpg">
-        <img src="images/Image.jpg"
-             alt="Rugby shorts" loading="lazy" />
+        <img src="images/Image.jpg" alt="Rugby shorts" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Shorts</span>
-            Match Shorts
+            <span>Shorts</span>Match Shorts
           </div>
         </div>
       </a>
@@ -567,12 +560,10 @@
       <a class="gallery-item" data-category="full-kit"
          data-caption="Full Squad Kit · 40+ Players"
          data-src="images/Image3.jpg">
-        <img src="images/Image3.jpg"
-             alt="Squad kit" loading="lazy" />
+        <img src="images/Image3.jpg" alt="Squad kit" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Full Kit</span>
-            Squad Order
+            <span>Full Kit</span>Squad Order
           </div>
         </div>
       </a>
@@ -580,12 +571,10 @@
       <a class="gallery-item" data-category="jerseys"
          data-caption="Club Jersey · Custom Sublimation"
          data-src="images/Image.jpg">
-        <img src="images/Image.jpg"
-             alt="Rugby jersey" loading="lazy" />
+        <img src="images/Image.jpg" alt="Rugby jersey" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Jerseys</span>
-            Club Jersey
+            <span>Jerseys</span>Club Jersey
           </div>
         </div>
       </a>
@@ -593,31 +582,13 @@
       <a class="gallery-item featured" data-category="jerseys"
          data-caption="Bespoke Match Jersey · Sublimation Print"
          data-src="images/Image3.jpg">
-        <img src="images/Image3.jpg"
-             alt="Rugby match jersey" loading="lazy" />
+        <img src="images/Image3.jpg" alt="Rugby match jersey" loading="lazy" />
         <div class="gallery-item-overlay">
           <div class="gallery-item-label">
-            <span>Jerseys</span>
-            Match Jersey
+            <span>Jerseys</span>Match Jersey
           </div>
         </div>
       </a>
-
-      <!--<!-- PLACEHOLDER — delete these once you have real photos
-      <div class="upload-placeholder" data-category="jerseys">
-        <i class="fas fa-image"></i>
-        Add your photo here
-      </div>
-
-      <div class="upload-placeholder" data-category="training">
-        <i class="fas fa-image"></i>
-        Add your photo here
-      </div>
-
-      <div class="upload-placeholder" data-category="full-kit">
-        <i class="fas fa-image"></i>
-        Add your photo here
-      </div>-->
 
     </div>
   </section>
@@ -644,28 +615,22 @@
           <div class="flex gap-2">
             <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <!--<a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>-->
           </div>
         </div>
 
         <div>
           <div class="footer-heading">Sports</div>
-          <a href="rugby.html"      class="footer-link">Rugby</a>
-          <a href="soccer.html"     class="footer-link">Soccer</a>
-          <a href="athletics.html"    class="footer-link">Athletics</a>
-          <a href="cricket.html"    class="footer-link">Cricket</a>
-          <!--<a href="running.html"    class="footer-link">Running & Athletics</a>
-          <a href="multisports.html"class="footer-link">Multisports</a>-->
+          <a href="rugby.html"     class="footer-link">Rugby</a>
+          <a href="soccer.html"    class="footer-link">Soccer</a>
+          <a href="athletics.html" class="footer-link">Athletics</a>
+          <a href="cricket.html"   class="footer-link">Cricket</a>
         </div>
 
         <div>
           <div class="footer-heading">Company</div>
-          <a href="about.html"     class="footer-link">Our Story</a>
-          <a href="process.html"   class="footer-link">How We Work</a>
-          <a href="contact.html"   class="footer-link">Contact Us</a>
-          <!--<a href="news.html"      class="footer-link">News</a>
-          <a href="careers.html"   class="footer-link">Careers</a>-->
+          <a href="about.html"   class="footer-link">Our Story</a>
+          <a href="process.html" class="footer-link">How We Work</a>
+          <a href="contact.html" class="footer-link">Contact Us</a>
         </div>
 
         <div>
@@ -676,10 +641,10 @@
           <a href="footer/terms.html"      class="footer-link">Terms &amp; Conditions</a>
           <a href="footer/privacy.html"    class="footer-link">Privacy Policy</a>
           <a href="tel:+27696096529" class="footer-link mt-4">
-            <i class="fas fa-phone mr-2 text-red-600"></i>+27 (0)69 609 6529
+            <i class="fas fa-phone mr-2" style="color:var(--color-red);"></i>+27 (0)69 609 6529
           </a>
-          <a href="mailto:info.dnasportswear.co.za" class="footer-link">
-            <i class="fas fa-envelope mr-2 text-red-600"></i>info.dnasportswear.co.za
+          <a href="mailto:info@dnasportswear.co.za" class="footer-link">
+            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info@dnasportswear.co.za
           </a>
         </div>
 
@@ -704,6 +669,11 @@
 
 
   <script>
+    /* ── Mobile nav ── */
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
+    document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
+
     /* ── Scroll reveal ── */
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -711,7 +681,7 @@
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
     /* ── Filter tabs ── */
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterBtns  = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
 
     filterBtns.forEach(btn => {
@@ -727,14 +697,13 @@
     });
 
     /* ── Lightbox ── */
-    const lightbox   = document.getElementById('lightbox');
-    const lbImg      = document.getElementById('lightbox-img');
-    const lbCaption  = document.getElementById('lightbox-caption');
-    const lbClose    = document.getElementById('lightbox-close');
-    const lbPrev     = document.getElementById('lb-prev');
-    const lbNext     = document.getElementById('lb-next');
+    const lightbox  = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lightbox-img');
+    const lbCaption = document.getElementById('lightbox-caption');
+    const lbClose   = document.getElementById('lightbox-close');
+    const lbPrev    = document.getElementById('lb-prev');
+    const lbNext    = document.getElementById('lb-next');
 
-    // Only real gallery items (with data-src), not placeholders
     const clickableItems = () => [...document.querySelectorAll('#gallery-grid .gallery-item[data-src]')]
       .filter(el => el.style.display !== 'none');
 
@@ -743,8 +712,8 @@
     function openLightbox(index) {
       const items = clickableItems();
       currentIndex = index;
-      lbImg.src      = items[currentIndex].dataset.src;
-      lbImg.alt      = items[currentIndex].querySelector('img').alt;
+      lbImg.src = items[currentIndex].dataset.src;
+      lbImg.alt = items[currentIndex].querySelector('img').alt;
       lbCaption.textContent = items[currentIndex].dataset.caption || '';
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -759,15 +728,14 @@
     function navigate(dir) {
       const items = clickableItems();
       currentIndex = (currentIndex + dir + items.length) % items.length;
-      lbImg.src     = items[currentIndex].dataset.src;
-      lbImg.alt     = items[currentIndex].querySelector('img').alt;
+      lbImg.src = items[currentIndex].dataset.src;
+      lbImg.alt = items[currentIndex].querySelector('img').alt;
       lbCaption.textContent = items[currentIndex].dataset.caption || '';
     }
 
-    document.querySelectorAll('#gallery-grid .gallery-item[data-src]').forEach((item, i) => {
+    document.querySelectorAll('#gallery-grid .gallery-item[data-src]').forEach((item) => {
       item.addEventListener('click', e => {
         e.preventDefault();
-        // index among currently visible clickable items
         const vis = clickableItems();
         const idx = vis.indexOf(item);
         if (idx !== -1) openLightbox(idx);
@@ -777,7 +745,6 @@
     lbClose.addEventListener('click', closeLightbox);
     lbPrev.addEventListener('click',  () => navigate(-1));
     lbNext.addEventListener('click',  () => navigate(1));
-
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
     document.addEventListener('keydown', e => {
