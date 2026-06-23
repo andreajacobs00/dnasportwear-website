@@ -76,11 +76,12 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       font-size: 0.82rem;
-      color: rgba(10,10,10,0.7);
+      color: rgba(10,10,10,0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
+    .nav-link--active { color: #0a0a0a; }
     .btn-primary {
       display: inline-block;
       background: var(--color-red);
@@ -95,6 +96,34 @@
       transition: background 0.2s;
     }
     .btn-primary:hover { background: #c4101f; }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: rgba(255,255,255,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0a0a0a;
+    }
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: #0a0a0a;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -461,8 +490,22 @@
         <a href="about.html"  class="nav-link">About</a>
       </div>
       <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="sports.html" class="nav-link">Sports</a>
+    <a href="ranges.html" class="nav-link">Ranges</a>
+    <a href="about.html"  class="nav-link">About</a>
+    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+  </div>
 
 
   <!-- ── PAGE HERO ── -->
@@ -487,7 +530,6 @@
   </div>-->
 
 
-
   <!-- ── FILTER BAR ── -->
   <div class="filter-bar" data-reveal>
     <button class="filter-btn active" data-filter="all">All</button>
@@ -499,14 +541,6 @@
 
 
   <!-- ── GALLERY ── -->
-  <!--
-    HOW TO ADD YOUR OWN IMAGES:
-    1. Copy one of the <a class="gallery-item"> blocks below.
-    2. Replace the img src with your own file path, e.g. src="images/athletics/singlet-01.jpg"
-    3. Update data-caption and the label text.
-    4. Set data-category to one of: singlets | tops | shorts | full-kit
-    5. Delete placeholder blocks once you have real images.
-  -->
   <section class="gallery-section">
     <div class="gallery-grid" id="gallery-grid">
 
@@ -657,10 +691,10 @@
 
         <div>
           <div class="footer-heading">Sports</div>
-          <a href="rugby-gallery.html"      class="footer-link">Rugby</a>
-          <a href="soccer-gallery.html"     class="footer-link">Soccer</a>
-          <a href="athletics-gallery.html"  class="footer-link">Athletics</a>
-          <a href="cricket-gallery.html"    class="footer-link">Cricket</a>
+          <a href="rugby.html"      class="footer-link">Rugby</a>
+          <a href="soccer.html"     class="footer-link">Soccer</a>
+          <a href="athletics.html"  class="footer-link">Athletics</a>
+          <a href="cricket.html"    class="footer-link">Cricket</a>
         </div>
 
         <div>
@@ -706,6 +740,11 @@
 
 
   <script>
+    /* Mobile nav */
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
+    document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
+
     /* Scroll reveal */
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -713,7 +752,7 @@
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
     /* Filter tabs */
-    const filterBtns  = document.querySelectorAll('.filter-btn');
+    const filterBtns   = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
 
     filterBtns.forEach(btn => {
