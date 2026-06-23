@@ -553,49 +553,32 @@
   <!-- ============================================================
        NAVIGATION
        ============================================================ -->
+  <!-- ── NAV ── -->
   <nav id="navbar">
-    <div class="max-w flex items-center justify-between px-6" style="width:100%;">
-
-      <!-- LOGO IMAGE — replace src with your actual logo file -->
-      <a href="index.html">
-        <img
-          src="images/logo.png"
-          alt="DNA Sportswear"
-          class="nav-logo-img"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <!-- Fallback text logo if image not found -->
-        <span style="display:none; font-family:var(--font-heading); font-size:1.3rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#111; text-decoration:none;">
-          DNA<span style="color:#e8132a;">SPORTSWEAR</span>
-        </span>
-      </a>
-
-      <!-- Desktop nav links -->
+    <div class="max-w flex items-center justify-between px-6">
+      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
       <div class="hidden md:flex items-center gap-8">
-        <div class="nav-dropdown">
-          <a href="#sports" class="nav-link">Sports <i class="fas fa-chevron-down text-xs ml-1 opacity-40"></i></a>
-          <div class="dropdown-menu">
-            <a href="sports.html">All Sports</a>
-            <a href="rugby.html">Rugby</a>
-            <a href="soccer.html">Soccer</a>
-            <a href="athletics.html">Athletics</a>
-            <a href="cricket.html">Cricket</a>
-          </div>
-        </div>
-
-        <div class="nav-dropdown">
-          <a href="ranges.html" class="nav-link">Ranges <i class="fas fa-chevron-down text-xs ml-1 opacity-40"></i></a>
-          <div class="dropdown-menu">
-            <a href="ranges.html">All Ranges</a>
-            <a href="performance.html">Performance Wear</a>
-            <a href="training.html">Training Wear</a>
-            <a href="outerwear.html">Outerwear</a>
-          </div>
-        </div>
-
-        <a href="about.html" class="nav-link">About</a>
-        <a href="admin/dashboard.html" class="nav-link" style="font-size:0.75rem; opacity:0.5;">Admin</a>
+        <a href="sports.html"  class="nav-link" style="color:#0a0a0a;">Sports</a>
+        <a href="ranges.html"  class="nav-link">Ranges</a>
+        <a href="about.html"   class="nav-link">About</a>
       </div>
+      <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
+      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="sports.html"  class="nav-link">Sports</a>
+    <a href="ranges.html"  class="nav-link">Ranges</a>
+    <a href="about.html"   class="nav-link">About</a>
+    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+  </div>
 
       <!-- CTA + Hamburger -->
       <div class="flex items-center gap-4">
