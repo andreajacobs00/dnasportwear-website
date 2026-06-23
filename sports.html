@@ -81,6 +81,7 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
+    .nav-link--active { color: #0a0a0a; }
     .btn-primary {
       display: inline-block;
       background: var(--color-red);
@@ -443,9 +444,9 @@
     <div class="max-w flex items-center justify-between px-6">
       <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="sports.html"  class="nav-link" style="color:#0a0a0a;">Sports</a>
-        <a href="ranges.html"  class="nav-link">Ranges</a>
-        <a href="about.html"   class="nav-link">About</a>
+        <a href="sports.html" class="nav-link nav-link--active">Sports</a>
+        <a href="ranges.html" class="nav-link">Ranges</a>
+        <a href="about.html"  class="nav-link">About</a>
       </div>
       <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
       <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
@@ -459,9 +460,9 @@
     <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
       <i class="fas fa-times"></i>
     </button>
-    <a href="sports.html"  class="nav-link">Sports</a>
-    <a href="ranges.html"  class="nav-link">Ranges</a>
-    <a href="about.html"   class="nav-link">About</a>
+    <a href="sports.html" class="nav-link">Sports</a>
+    <a href="ranges.html" class="nav-link">Ranges</a>
+    <a href="about.html"  class="nav-link">About</a>
     <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
   </div>
 
@@ -611,10 +612,10 @@
 
         <div>
           <div class="footer-heading">Sports</div>
-          <a href="rugby.html"    class="footer-link">Rugby</a>
-          <a href="soccer.html"   class="footer-link">Soccer</a>
+          <a href="rugby.html"     class="footer-link">Rugby</a>
+          <a href="soccer.html"    class="footer-link">Soccer</a>
           <a href="athletics.html" class="footer-link">Athletics</a>
-          <a href="cricket.html"  class="footer-link">Cricket</a>
+          <a href="cricket.html"   class="footer-link">Cricket</a>
         </div>
 
         <div>
