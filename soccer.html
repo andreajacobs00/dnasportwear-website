@@ -53,16 +53,8 @@
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
 
-    .nav-logo {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
+    .nav-logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 52px; width: auto; display: block; }
 
     .nav-link {
       font-family: var(--font-heading);
@@ -93,22 +85,35 @@
     .btn-primary:hover { background: #c4101f; }
 
     /* ── MOBILE MENU ── */
-    .mobile-menu {
+    #dna-mobile-menu {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 99;
+      z-index: 999;
       background: rgba(255,255,255,0.98);
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2rem;
     }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu .nav-link { font-size: 1.5rem; font-weight: 800; color: #0a0a0a; }
-    .menu-toggle {
+    #dna-mobile-menu.open { display: flex !important; }
+    #dna-mobile-menu a {
+      font-family: var(--font-heading) !important;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0a0a0a !important;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    #dna-menu-toggle {
       background: none; border: none; color: #0a0a0a;
       font-size: 1.3rem; cursor: pointer; display: flex; align-items: center;
+    }
+    #dna-menu-close {
+      position: absolute; top: 1.4rem; right: 1.5rem;
+      background: none; border: none; color: #0a0a0a;
+      font-size: 1.5rem; cursor: pointer; line-height: 1;
     }
 
     /* ── PAGE HERO ── */
@@ -121,34 +126,21 @@
     }
     .page-hero::before {
       content: 'SOCCER';
-      position: absolute;
-      right: -0.5rem; bottom: -1.5rem;
-      font-family: var(--font-heading);
-      font-weight: 900;
+      position: absolute; right: -0.5rem; bottom: -1.5rem;
+      font-family: var(--font-heading); font-weight: 900;
       font-size: clamp(6rem, 18vw, 14rem);
-      color: rgba(232,19,42,0.06);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
+      color: rgba(232,19,42,0.06); line-height: 1;
+      pointer-events: none; user-select: none;
     }
     .section-label {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-red);
-      display: block;
-      margin-bottom: 0.5rem;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: 0.5rem;
     }
     .section-title {
-      font-family: var(--font-heading);
-      font-weight: 900;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      line-height: 1.0;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      color: #0a0a0a;
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.0;
+      text-transform: uppercase; letter-spacing: 0.02em; color: #0a0a0a;
     }
     .section-title span { color: var(--color-red); }
     .red-line { width: 2.5rem; height: 3px; background: var(--color-red); margin: 1rem 0 1.5rem; }
@@ -160,13 +152,10 @@
       padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto;
     }
     .filter-btn {
-      font-family: var(--font-heading);
-      font-weight: 700; font-size: 0.75rem;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem;
       letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.45rem 1.1rem;
-      border: 1px solid rgba(0,0,0,0.18);
-      background: transparent; color: rgba(10,10,10,0.6);
-      cursor: pointer; transition: all 0.2s;
+      padding: 0.45rem 1.1rem; border: 1px solid rgba(0,0,0,0.18);
+      background: transparent; color: rgba(10,10,10,0.6); cursor: pointer; transition: all 0.2s;
     }
     .filter-btn:hover { border-color: var(--color-red); color: #0a0a0a; }
     .filter-btn.active { background: var(--color-red); border-color: var(--color-red); color: #fff; }
@@ -183,21 +172,18 @@
       position: relative; overflow: hidden; display: block; cursor: pointer;
     }
     .gallery-item img {
-      width: 100%; display: block;
-      transition: transform 0.45s ease;
+      width: 100%; display: block; transition: transform 0.45s ease;
       filter: brightness(0.96) saturate(0.95);
     }
     .gallery-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1.05); }
     .gallery-item-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
-      opacity: 0; transition: opacity 0.3s;
-      display: flex; align-items: flex-end; padding: 1rem;
+      opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem;
     }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label {
-      font-family: var(--font-heading);
-      font-weight: 700; font-size: 0.78rem;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: #fff;
     }
     .gallery-item-label span {
@@ -208,8 +194,7 @@
     /* ── LIGHTBOX ── */
     #lightbox {
       display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.94);
-      align-items: center; justify-content: center; padding: 1.5rem;
+      background: rgba(0,0,0,0.94); align-items: center; justify-content: center; padding: 1.5rem;
     }
     #lightbox.open { display: flex; }
     #lightbox-img { max-width: min(900px, 100%); max-height: 85vh; object-fit: contain; box-shadow: 0 0 80px rgba(0,0,0,0.8); }
@@ -220,11 +205,9 @@
     }
     #lightbox-close:hover { color: var(--color-red); }
     #lightbox-caption {
-      position: absolute; bottom: 1.5rem; left: 0; right: 0;
-      text-align: center;
-      font-family: var(--font-heading);
-      font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      position: absolute; bottom: 1.5rem; left: 0; right: 0; text-align: center;
+      font-family: var(--font-heading); font-size: 0.78rem;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);
     }
     .lb-nav {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -263,11 +246,7 @@
     .btn-outline:hover { background: #fff; color: var(--color-red) !important; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #ffffff;
-      border-top: 1px solid #e0e0e0;
-      color: #111111;
-    }
+    footer { background: #ffffff; border-top: 1px solid #e0e0e0; color: #111111; }
     .footer-logo { display: inline-flex; align-items: center; text-decoration: none; }
     .footer-logo img { height: 32px; width: auto; display: block; }
     .footer-heading {
@@ -276,9 +255,8 @@
       color: #111111; margin-bottom: 16px;
     }
     .footer-link {
-      display: block; font-family: var(--font-body);
-      font-size: 0.88rem; color: #555555;
-      text-decoration: none; margin-bottom: 8px; transition: color 0.2s;
+      display: block; font-family: var(--font-body); font-size: 0.88rem;
+      color: #555555; text-decoration: none; margin-bottom: 8px; transition: color 0.2s;
     }
     .footer-link:hover { color: var(--color-red); }
     .social-link {
@@ -287,6 +265,15 @@
       color: #555555; text-decoration: none; font-size: 0.85rem; transition: border-color 0.2s, color 0.2s;
     }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background-color: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; text-decoration: none;
+    }
+    .whatsapp-float img { width: 32px; height: 32px; filter: brightness(0) invert(1); }
 
     /* ── REVEAL ── */
     [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
@@ -312,26 +299,26 @@
         <img src="images/logo-black.png" alt="DNA Sportswear" />
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="sports.html" class="nav-link">Sports</a>
+        <a href="sports.html" class="nav-link nav-link--active">Sports</a>
         <a href="ranges.html" class="nav-link">Ranges</a>
         <a href="about.html"  class="nav-link">About</a>
       </div>
       <a href="contact.html" class="btn-primary hidden md:inline-block">Enquire Now</a>
-      <button class="menu-toggle md:hidden" id="menu-toggle" aria-label="Open menu">
+      <button id="dna-menu-toggle" class="md:hidden" aria-label="Open menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
   </nav>
 
   <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="menu-toggle" id="menu-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.5rem;font-size:1.5rem;">
+  <div id="dna-mobile-menu">
+    <button id="dna-menu-close" aria-label="Close menu">
       <i class="fas fa-times"></i>
     </button>
-    <a href="sports.html" class="nav-link">Sports</a>
-    <a href="ranges.html" class="nav-link">Ranges</a>
-    <a href="about.html"  class="nav-link">About</a>
-    <a href="contact.html" class="btn-primary mt-2">Enquire Now</a>
+    <a href="sports.html">Sports</a>
+    <a href="ranges.html">Ranges</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="btn-primary" style="margin-top:0.5rem;">Enquire Now</a>
   </div>
 
 
@@ -447,6 +434,12 @@
   </div>
 
 
+  <!-- ── WHATSAPP FLOAT ── -->
+  <a href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
+
+
   <!-- ── FOOTER ── -->
   <footer>
     <div class="max-w px-6 py-16">
@@ -516,15 +509,26 @@
 
 
   <script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
-    document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
+    // ── MOBILE MENU ──
+    (function() {
+      var menu   = document.getElementById('dna-mobile-menu');
+      var opener = document.getElementById('dna-menu-toggle');
+      var closer = document.getElementById('dna-menu-close');
+      if (!menu || !opener || !closer) return;
+      opener.addEventListener('click', function() { menu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+      closer.addEventListener('click', function() { menu.classList.remove('open'); document.body.style.overflow = ''; });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('open')) { menu.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+    })();
 
+    // ── REVEAL ──
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
+    // ── FILTER ──
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
     filterBtns.forEach(btn => {
@@ -538,6 +542,7 @@
       });
     });
 
+    // ── LIGHTBOX ──
     const lightbox  = document.getElementById('lightbox');
     const lbImg     = document.getElementById('lightbox-img');
     const lbCaption = document.getElementById('lightbox-caption');
