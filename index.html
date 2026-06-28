@@ -8,9 +8,6 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
@@ -31,15 +28,8 @@
   </script>
 
   <style>
-    @font-face {
-      font-family: 'Gotham';
-      src: local('Gotham Medium'), local('GothamMedium'), local('Gotham-Medium');
-      font-weight: 500;
-      font-style: normal;
-    }
-
     :root {
-      --font-heading: 'Gotham', 'Barlow Condensed', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      --font-heading: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       --font-body:    Arial, 'Helvetica Neue', Helvetica, sans-serif;
       --color-red:    #e8132a;
       --color-bg:     #ffffff;
@@ -477,25 +467,24 @@
     }
 
     .whatsapp-float {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: #25D366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 9999;
-}
-
-.whatsapp-float img {
-  width: 32px;
-  height: 32px;
-  filter: brightness(0) invert(1); /* makes it white */
-}
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+    .whatsapp-float img {
+      width: 32px;
+      height: 32px;
+      filter: brightness(0) invert(1);
+    }
   </style>
 </head>
 
@@ -576,7 +565,7 @@
   </div>
 
 
-  <!-- ── INTRO ── -->
+  <!-- ── INTRO ── */
   <section class="section-pad bg-intro">
     <div class="max-w grid md:grid-cols-2 gap-12 items-center px-6">
 
@@ -736,13 +725,13 @@
     <a href="contact.html" class="btn-outline">Get a Free Quote</a>
   </div>
 
-  <a 
-  href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!" 
-  target="_blank"
-  class="whatsapp-float"
->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-</a>
+  <a
+    href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!"
+    target="_blank"
+    class="whatsapp-float"
+  >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
 
 
   <!-- ── FOOTER ── -->
