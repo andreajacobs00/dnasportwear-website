@@ -45,7 +45,7 @@
     }
 
     h1, h2, h3, h4, h5, h6,
-    .section-title, .nav-logo, .footer-logo, .footer-heading,
+    .section-title, .footer-heading,
     .step-title, .stat-big, .nav-link, .mobile-nav-link,
     .footer-link, .section-label {
       font-family: var(--font-heading) !important;
@@ -108,9 +108,7 @@
 
     .text-red,
     [style*="color:var(--color-red)"],
-    [style*="color: var(--color-red)"],
-    .nav-logo span,
-    .footer-logo span {
+    [style*="color: var(--color-red)"] {
       color: var(--color-red) !important;
     }
     .red-line {
@@ -121,7 +119,7 @@
     }
     .red-line.center { margin: 0 auto 24px; }
 
-    /* ── NAV ── */
+    /* ── NAV — matches index.html exactly ── */
     #navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -132,15 +130,19 @@
       padding: 0.9rem 0;
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
+
+    /* Image-based logo — same as index.html */
     .nav-logo {
-      font-family: var(--font-heading) !important;
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-red); }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
     .nav-link {
       font-family: var(--font-heading) !important;
       font-weight: 600;
@@ -249,22 +251,25 @@
       background: #fff !important;
     }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER — matches index.html exactly ── */
     footer {
       background: #ffffff !important;
       color: #111111;
       border-top: 1px solid #e0e0e0;
     }
+
+    /* Image-based footer logo — same as index.html */
     .footer-logo {
-      font-family: var(--font-heading) !important;
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #111111;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .footer-logo span { color: var(--color-red); }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
     .footer-heading {
       font-family: var(--font-heading) !important;
       font-size: 0.72rem;
@@ -305,12 +310,6 @@
     .section-pad { padding: 80px 24px; }
     @media (max-width: 767px) { .section-pad { padding: 56px 20px; } }
 
-    /* Inline font-family overrides for elements using style attributes */
-    [style*="font-family:var(--font-display)"],
-    [style*="font-family: var(--font-display)"] {
-      font-family: var(--font-heading) !important;
-    }
-
     .stat-big {
       font-family: var(--font-heading) !important;
       font-size: 3rem;
@@ -326,7 +325,9 @@
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-black.png" alt="DNA Sportswear" />
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="sports.html" class="nav-link">Sports</a>
         <a href="ranges.html" class="nav-link">Ranges</a>
@@ -645,7 +646,9 @@
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
+          <a href="index.html" class="footer-logo">
+            <img src="images/logo-black.png" alt="DNA Sportswear" />
+          </a>
           <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>

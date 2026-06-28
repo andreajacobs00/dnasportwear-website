@@ -7,9 +7,6 @@
   <meta name="description" content="Let's build your kit. Whether you are starting fresh or scaling your teamwear, we got you." />
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
 
@@ -26,7 +23,13 @@
   </script>
 
   <style>
-    /* ── NAV (matches soccer gallery) ── */
+    :root {
+      --color-red: #e8132a;
+      --font-heading: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      --font-body: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+
+    /* ── NAV ── */
     #navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -37,17 +40,20 @@
       padding: 0.9rem 0;
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
+
     .nav-logo {
-      font-family: 'Gotham', Arial, sans-serif;
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: #e8132a; }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
     .nav-link {
-      font-family: 'Gotham', Arial, sans-serif;
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -57,11 +63,12 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
+
     .btn-primary {
       display: inline-block;
-      background: #e8132a;
-      color: #fff;
-      font-family: 'Gotham', Arial, sans-serif;
+      background: var(--color-red);
+      color: #fff !important;
+      font-family: var(--font-heading);
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -72,7 +79,7 @@
     }
     .btn-primary:hover { background: #c4101f; }
 
-    /* ── MOBILE MENU — dna- prefixed IDs avoid conflicts with css/styles.css ── */
+    /* ── MOBILE MENU ── */
     #dna-mobile-menu {
       display: none;
       position: fixed;
@@ -86,7 +93,7 @@
     }
     #dna-mobile-menu.open { display: flex !important; }
     #dna-mobile-menu a {
-      font-family: 'Gotham', Arial, sans-serif;
+      font-family: var(--font-heading);
       font-size: 1.5rem;
       font-weight: 800;
       color: #0a0a0a !important;
@@ -118,7 +125,7 @@
     .contact-section {
       background: #ffffff;
       padding: 100px 0 80px;
-      font-family: 'Barlow', sans-serif;
+      font-family: var(--font-body);
     }
     .contact-inner {
       max-width: 1200px;
@@ -130,16 +137,16 @@
       align-items: start;
     }
     .contact-eyebrow {
-      font-family: 'Gotham', sans-serif;
+      font-family: var(--font-heading);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.15em;
-      color: #e8132a;
+      color: var(--color-red);
       text-transform: uppercase;
       margin-bottom: 12px;
     }
     .contact-heading {
-      font-family: 'Gotham', sans-serif;
+      font-family: var(--font-heading);
       font-size: clamp(48px, 5vw, 72px);
       font-weight: 900;
       line-height: 0.93;
@@ -147,14 +154,15 @@
       color: #0a0a0a;
       margin: 0 0 20px;
     }
-    .contact-heading span { color: #e8132a; }
+    .contact-heading span { color: var(--color-red); }
     .contact-divider {
       width: 48px;
       height: 3px;
-      background: #e8132a;
+      background: var(--color-red);
       margin-bottom: 24px;
     }
     .contact-sub {
+      font-family: var(--font-body);
       font-size: 15px;
       color: #555;
       line-height: 1.75;
@@ -177,7 +185,7 @@
       margin-bottom: 18px;
     }
     .form-group label {
-      font-family: 'Gotham', sans-serif;
+      font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -190,7 +198,7 @@
       background: #ffffff;
       border: 1px solid rgba(0,0,0,0.15);
       color: #0a0a0a;
-      font-family: 'Barlow', sans-serif;
+      font-family: var(--font-body);
       font-size: 14px;
       padding: 12px 14px;
       outline: none;
@@ -212,10 +220,10 @@
     .form-group select option { background: #ffffff; color: #0a0a0a; }
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus { border-color: #e8132a; }
+    .form-group textarea:focus { border-color: var(--color-red); }
     .form-group input.error,
     .form-group select.error,
-    .form-group textarea.error { border-color: #e8132a; }
+    .form-group textarea.error { border-color: var(--color-red); }
     .form-group textarea { resize: vertical; min-height: 130px; }
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: #999; }
@@ -225,9 +233,9 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #e8132a;
+      background: var(--color-red);
       color: #fff;
-      font-family: 'Gotham', sans-serif;
+      font-family: var(--font-heading);
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -252,12 +260,12 @@
       margin-top: 16px;
     }
     .success-msg p {
-      font-family: 'Arial', sans-serif;
+      font-family: var(--font-heading);
       font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #e8132a;
+      color: var(--color-red);
       margin: 0;
     }
 
@@ -270,16 +278,52 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #ffffff !important;
-      border-top: 1px solid rgba(0,0,0,0.08);
+      background: #ffffff;
+      border-top: 1px solid #e0e0e0;
+      color: #111111;
     }
-    .footer-logo { font-family: 'Gotham', Arial, sans-serif; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.08em; color: #0a0a0a; text-decoration: none; }
-    .footer-logo span { color: #e8132a; }
-    .footer-heading { font-family: 'Gotham', Arial, sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #0a0a0a; margin-bottom: 1rem; }
-    .footer-link { display: block; color: #555; font-size: 0.85rem; text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
-    .footer-link:hover { color: #0a0a0a; }
-    .social-link { width: 2rem; height: 2rem; border: 1px solid rgba(0,0,0,0.15); display: inline-flex; align-items: center; justify-content: center; color: rgba(10,10,10,0.55); text-decoration: none; font-size: 0.75rem; transition: all 0.2s; }
-    .social-link:hover { border-color: #e8132a; color: #e8132a; }
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #111111;
+      margin-bottom: 16px;
+    }
+    .footer-link {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: #555555;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--color-red); }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      color: #555555;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
   </style>
 </head>
 
@@ -288,7 +332,9 @@
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-black.png" alt="DNA Sportswear" />
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="sports.html" class="nav-link">Sports</a>
         <a href="ranges.html" class="nav-link">Ranges</a>
@@ -301,7 +347,7 @@
     </div>
   </nav>
 
-  <!-- Mobile menu — unique IDs so css/styles.css and js/main.js can't interfere -->
+  <!-- Mobile menu -->
   <div id="dna-mobile-menu">
     <button id="dna-menu-close" aria-label="Close menu">
       <i class="fas fa-times"></i>
@@ -395,8 +441,10 @@
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
-          <p style="color:#555;font-size:0.85rem;line-height:1.7;margin-top:1rem;margin-bottom:1.5rem;">
+          <a href="index.html" class="footer-logo">
+            <img src="images/logo-black.png" alt="DNA Sportswear" />
+          </a>
+          <p style="color:#555;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:0.85rem;line-height:1.7;margin-top:1rem;margin-bottom:1.5rem;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
           <div class="flex gap-2">
@@ -428,18 +476,18 @@
           <a href="footer/terms.html"      class="footer-link">Terms &amp; Conditions</a>
           <a href="footer/privacy.html"    class="footer-link">Privacy Policy</a>
           <a href="tel:+27696096529" class="footer-link mt-4">
-            <i class="fas fa-phone mr-2" style="color:#e8132a;"></i>+27 (0)69 609 6529
+            <i class="fas fa-phone mr-2" style="color:var(--color-red);"></i>+27 (0)69 609 6529
           </a>
           <a href="mailto:info@dnasportswear.co.za" class="footer-link">
-            <i class="fas fa-envelope mr-2" style="color:#e8132a;"></i>info@dnasportswear.co.za
+            <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info@dnasportswear.co.za
           </a>
         </div>
 
       </div>
 
-      <div style="border-top:1px solid rgba(0,0,0,0.12);margin-top:3rem;padding-top:1.5rem;" class="flex flex-wrap justify-between items-center gap-3">
-        <p style="color:#555;font-size:0.75rem;">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
-        <a href="admin/dashboard.html" style="color:#555;font-size:0.75rem;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='0.4'">Admin ↗</a>
+      <div style="border-top:1px solid #e0e0e0;margin-top:3rem;padding-top:1.5rem;" class="flex flex-wrap justify-between items-center gap-3">
+        <p style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
+        <a href="admin/dashboard.html" style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='0.4'">Admin ↗</a>
       </div>
     </div>
   </footer>
@@ -448,7 +496,6 @@
   <script src="js/main.js"></script>
 
   <script>
-    /* Mobile nav — IIFE with dna- IDs, isolated from js/main.js */
     (function() {
       var menu   = document.getElementById('dna-mobile-menu');
       var opener = document.getElementById('dna-menu-toggle');
@@ -461,7 +508,6 @@
       });
     })();
 
-    /* Form validation */
     function handleSubmit() {
       const required = ['cf-fname', 'cf-lname', 'cf-email'];
       let valid = true;
