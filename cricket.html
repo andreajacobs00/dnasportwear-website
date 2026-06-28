@@ -7,10 +7,6 @@
   <meta name="description" content="Browse our cricket teamwear gallery — custom playing shirts, trousers, training wear and full kits for clubs of every level." />
 
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
@@ -37,8 +33,8 @@
       --color-black:    #0a0a0a;
       --color-charcoal: #1a1a1a;
       --color-grey:     #666;
-      --font-display:   'Gotham', sans-serif;
-      --font-body:      'Arial', sans-serif;
+      --font-heading:   'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      --font-body:      Arial, 'Helvetica Neue', Helvetica, sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,17 +57,20 @@
       padding: 0.9rem 0;
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
+
     .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-red); }
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
     .nav-link {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -81,11 +80,12 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
+
     .btn-primary {
       display: inline-block;
       background: var(--color-red);
-      color: #fff;
-      font-family: var(--font-display);
+      color: #fff !important;
+      font-family: var(--font-heading);
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -109,19 +109,10 @@
       gap: 2rem;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu .nav-link {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #0a0a0a;
-    }
+    .mobile-menu .nav-link { font-size: 1.5rem; font-weight: 800; color: #0a0a0a; }
     .menu-toggle {
-      background: none;
-      border: none;
-      color: #0a0a0a;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      background: none; border: none; color: #0a0a0a;
+      font-size: 1.3rem; cursor: pointer; display: flex; align-items: center;
     }
 
     /* ── PAGE HERO ── */
@@ -135,9 +126,8 @@
     .page-hero::before {
       content: 'CRICKET';
       position: absolute;
-      right: -0.5rem;
-      bottom: -1.5rem;
-      font-family: var(--font-display);
+      right: -0.5rem; bottom: -1.5rem;
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: clamp(5rem, 15vw, 12rem);
       color: rgba(232,19,42,0.06);
@@ -145,36 +135,8 @@
       pointer-events: none;
       user-select: none;
     }
-
-    /* ── SPORT NAV TABS ── */
-    .sport-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-      background: #f4f4f4;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-    .sport-tab {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.85rem 1.4rem;
-      color: rgba(10,10,10,0.45);
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .sport-tab:hover { color: rgba(10,10,10,0.9); }
-    .sport-tab.active { color: #0a0a0a; border-bottom-color: var(--color-red); }
-    .sport-tab i { font-size: 0.75rem; opacity: 0.6; }
-
     .section-label {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
@@ -184,7 +146,7 @@
       margin-bottom: 0.5rem;
     }
     .section-title {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       line-height: 1.0;
@@ -193,152 +155,86 @@
       color: #0a0a0a;
     }
     .section-title span { color: var(--color-red); }
-    .red-line {
-      width: 2.5rem;
-      height: 3px;
-      background: var(--color-red);
-      margin: 1rem 0 1.5rem;
-    }
+    .red-line { width: 2.5rem; height: 3px; background: var(--color-red); margin: 1rem 0 1.5rem; }
     .text-grey { color: var(--color-grey); }
 
     /* ── FILTER TABS ── */
     .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 2rem 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto;
     }
     .filter-btn {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
       padding: 0.45rem 1.1rem;
       border: 1px solid rgba(0,0,0,0.18);
-      background: transparent;
-      color: rgba(10,10,10,0.6);
-      cursor: pointer;
-      transition: all 0.2s;
+      background: transparent; color: rgba(10,10,10,0.6);
+      cursor: pointer; transition: all 0.2s;
     }
     .filter-btn:hover { border-color: var(--color-red); color: #0a0a0a; }
-    .filter-btn.active {
-      background: var(--color-red);
-      border-color: var(--color-red);
-      color: #fff;
-    }
+    .filter-btn.active { background: var(--color-red); border-color: var(--color-red); color: #fff; }
 
     /* ── MASONRY GALLERY ── */
     .gallery-section { padding: 0 1.5rem 5rem; }
-    .gallery-grid {
-      columns: 1;
-      column-gap: 0.75rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .gallery-grid { columns: 1; column-gap: 0.75rem; max-width: 1200px; margin: 0 auto; }
     @media (min-width: 640px)  { .gallery-grid { columns: 2; } }
     @media (min-width: 900px)  { .gallery-grid { columns: 3; } }
     @media (min-width: 1100px) { .gallery-grid { columns: 4; } }
 
     .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      display: block;
-      cursor: pointer;
+      break-inside: avoid; margin-bottom: 0.75rem;
+      position: relative; overflow: hidden; display: block; cursor: pointer;
     }
     .gallery-item img {
-      width: 100%;
-      display: block;
+      width: 100%; display: block;
       transition: transform 0.45s ease;
       filter: brightness(0.96) saturate(0.95);
     }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-      filter: brightness(1) saturate(1.05);
-    }
+    .gallery-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1.05); }
     .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1rem;
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: flex-end; padding: 1rem;
     }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #fff;
     }
     .gallery-item-label span {
-      color: var(--color-red);
-      display: block;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      margin-bottom: 0.15rem;
+      color: var(--color-red); display: block;
+      font-size: 0.65rem; letter-spacing: 0.18em; margin-bottom: 0.15rem;
     }
 
     /* ── LIGHTBOX ── */
     #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
+      display: none; position: fixed; inset: 0; z-index: 200;
       background: rgba(0,0,0,0.94);
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      align-items: center; justify-content: center; padding: 1.5rem;
     }
     #lightbox.open { display: flex; }
-    #lightbox-img {
-      max-width: min(900px, 100%);
-      max-height: 85vh;
-      object-fit: contain;
-      box-shadow: 0 0 80px rgba(0,0,0,0.8);
-    }
+    #lightbox-img { max-width: min(900px, 100%); max-height: 85vh; object-fit: contain; box-shadow: 0 0 80px rgba(0,0,0,0.8); }
     #lightbox-close {
-      position: absolute;
-      top: 1.2rem; right: 1.5rem;
-      font-size: 1.8rem;
-      color: rgba(255,255,255,0.6);
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-      transition: color 0.2s;
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-size: 1.8rem; color: rgba(255,255,255,0.6);
+      cursor: pointer; background: none; border: none; line-height: 1; transition: color 0.2s;
     }
     #lightbox-close:hover { color: var(--color-red); }
     #lightbox-caption {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 0; right: 0;
+      position: absolute; bottom: 1.5rem; left: 0; right: 0;
       text-align: center;
-      font-family: var(--font-display);
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: rgba(255,255,255,0.45);
     }
     .lb-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.6);
-      font-size: 1.2rem;
-      padding: 0.6rem 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6); font-size: 1.2rem;
+      padding: 0.6rem 0.9rem; cursor: pointer; transition: all 0.2s;
     }
     .lb-nav:hover { border-color: var(--color-red); color: #fff; }
     #lb-prev { left: 1rem; }
@@ -346,127 +242,67 @@
 
     /* ── CTA BAND ── */
     .cta-band {
-      background: var(--color-red);
-      padding: 4rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--color-red); padding: 4rem 1.5rem;
+      text-align: center; position: relative; overflow: hidden;
     }
     .cta-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent, transparent 20px,
-        rgba(0,0,0,0.04) 20px, rgba(0,0,0,0.04) 40px
-      );
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(0,0,0,0.04) 20px, rgba(0,0,0,0.04) 40px);
     }
     .cta-band h2 {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3rem);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      line-height: 1.05;
-      position: relative;
-      color: #fff;
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase;
+      letter-spacing: 0.03em; line-height: 1.05; position: relative; color: #fff;
     }
     .cta-band p {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin: 0.75rem 0 1.75rem;
-      position: relative;
-      color: #fff;
+      font-family: var(--font-body); font-size: 0.85rem;
+      opacity: 0.85; margin: 0.75rem 0 1.75rem; position: relative; color: #fff;
     }
     .btn-outline {
-      display: inline-block;
-      border: 2px solid #fff;
-      color: #fff;
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      padding: 0.6rem 1.5rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      position: relative;
+      display: inline-block; border: 2px solid #fff; color: #fff !important;
+      font-family: var(--font-heading); font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem;
+      padding: 0.6rem 1.5rem; text-decoration: none; transition: all 0.2s; position: relative;
     }
-    .btn-outline:hover { background: #fff; color: var(--color-red); }
+    .btn-outline:hover { background: #fff; color: var(--color-red) !important; }
 
     /* ── FOOTER ── */
     footer {
-      background: #f4f4f4;
-      border-top: 1px solid rgba(0,0,0,0.08);
+      background: #ffffff;
+      border-top: 1px solid #e0e0e0;
+      color: #111111;
     }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
-      text-decoration: none;
-    }
-    .footer-logo span { color: var(--color-red); }
+    .footer-logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .footer-logo img { height: 32px; width: auto; display: block; }
     .footer-heading {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #0a0a0a;
-      margin-bottom: 1rem;
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #111111; margin-bottom: 16px;
     }
     .footer-link {
-      display: block;
-      color: var(--color-grey);
-      font-size: 0.85rem;
-      text-decoration: none;
-      margin-bottom: 0.5rem;
-      transition: color 0.2s;
+      display: block; font-family: var(--font-body);
+      font-size: 0.88rem; color: #555555;
+      text-decoration: none; margin-bottom: 8px; transition: color 0.2s;
     }
-    .footer-link:hover { color: #0a0a0a; }
+    .footer-link:hover { color: var(--color-red); }
     .social-link {
-      width: 2rem; height: 2rem;
-      border: 1px solid rgba(0,0,0,0.15);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(10,10,10,0.55);
-      text-decoration: none;
-      font-size: 0.75rem;
-      transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border: 1px solid #ccc; border-radius: 50%;
+      color: #555555; text-decoration: none; font-size: 0.85rem; transition: border-color 0.2s, color 0.2s;
     }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
 
     /* ── REVEAL ── */
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
+    [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
     [data-reveal].visible { opacity: 1; transform: none; }
 
     /* ── UPLOAD PLACEHOLDERS ── */
     .upload-placeholder {
-      background: #f4f4f4;
-      border: 1.5px dashed rgba(0,0,0,0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 3rem 1rem;
-      color: rgba(10,10,10,0.3);
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      background: #f4f4f4; border: 1.5px dashed rgba(0,0,0,0.15);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 3rem 1rem; color: rgba(10,10,10,0.3);
+      font-family: var(--font-heading); font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem;
     }
     .upload-placeholder i { font-size: 1.5rem; color: rgba(232,19,42,0.3); }
   </style>
@@ -477,7 +313,9 @@
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-black.png" alt="DNA Sportswear" />
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="sports.html" class="nav-link">Sports</a>
         <a href="ranges.html" class="nav-link">Ranges</a>
@@ -508,7 +346,7 @@
       <span class="section-label">Custom Teamwear</span>
       <h1 class="section-title">Cricket<br><span>Kit Gallery</span></h1>
       <div class="red-line"></div>
-      <p class="text-grey" style="font-size:0.92rem;max-width:480px;line-height:1.7;">
+      <p class="text-grey" style="font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:0.92rem;max-width:480px;line-height:1.7;">
         Every piece below was built from scratch for a real club. Whites, coloured kit,
         training wear — browse the work, then get in touch and we'll design yours.
       </p>
@@ -535,9 +373,7 @@
          data-src="images/cricket/shirt-01.jpg">
         <img src="images/cricket/shirt-01.jpg" alt="Cricket playing shirt" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Playing Shirts</span>ODI Playing Shirt
-          </div>
+          <div class="gallery-item-label"><span>Playing Shirts</span>ODI Playing Shirt</div>
         </div>
       </a>
 
@@ -546,9 +382,7 @@
          data-src="images/cricket/full-kit-01.jpg">
         <img src="images/cricket/full-kit-01.jpg" alt="Full cricket kit" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Full Kit</span>Whites &amp; Coloured Set
-          </div>
+          <div class="gallery-item-label"><span>Full Kit</span>Whites &amp; Coloured Set</div>
         </div>
       </a>
 
@@ -557,9 +391,7 @@
          data-src="images/cricket/shirt-02.jpg">
         <img src="images/cricket/shirt-02.jpg" alt="T20 cricket shirt" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Playing Shirts</span>T20 Match Shirt
-          </div>
+          <div class="gallery-item-label"><span>Playing Shirts</span>T20 Match Shirt</div>
         </div>
       </a>
 
@@ -568,9 +400,7 @@
          data-src="images/cricket/training-01.jpg">
         <img src="images/cricket/training-01.jpg" alt="Cricket training tee" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Training</span>Training Tee
-          </div>
+          <div class="gallery-item-label"><span>Training</span>Training Tee</div>
         </div>
       </a>
 
@@ -579,9 +409,7 @@
          data-src="images/cricket/trousers-01.jpg">
         <img src="images/cricket/trousers-01.jpg" alt="Cricket playing trousers" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Trousers</span>Playing Trousers
-          </div>
+          <div class="gallery-item-label"><span>Trousers</span>Playing Trousers</div>
         </div>
       </a>
 
@@ -590,9 +418,7 @@
          data-src="images/cricket/full-kit-02.jpg">
         <img src="images/cricket/full-kit-02.jpg" alt="Cricket squad kit" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Full Kit</span>Squad Order
-          </div>
+          <div class="gallery-item-label"><span>Full Kit</span>Squad Order</div>
         </div>
       </a>
 
@@ -601,9 +427,7 @@
          data-src="images/cricket/training-02.jpg">
         <img src="images/cricket/training-02.jpg" alt="Cricket warm-up jacket" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Training</span>Warm-Up Jacket
-          </div>
+          <div class="gallery-item-label"><span>Training</span>Warm-Up Jacket</div>
         </div>
       </a>
 
@@ -612,9 +436,7 @@
          data-src="images/cricket/shirt-03.jpg">
         <img src="images/cricket/shirt-03.jpg" alt="Club cricket shirt" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Playing Shirts</span>Club Playing Shirt
-          </div>
+          <div class="gallery-item-label"><span>Playing Shirts</span>Club Playing Shirt</div>
         </div>
       </a>
 
@@ -657,8 +479,10 @@
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
-          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
+          <a href="index.html" class="footer-logo">
+            <img src="images/logo-black.png" alt="DNA Sportswear" />
+          </a>
+          <p style="color:#555;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:0.85rem;line-height:1.7;margin-top:1rem;margin-bottom:1.5rem;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
           <div class="flex gap-2">
@@ -699,9 +523,9 @@
 
       </div>
 
-      <div class="border-t border-gray-300 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
-        <p class="text-grey text-xs">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
-        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">Admin ↗</a>
+      <div style="border-top:1px solid #e0e0e0;margin-top:3rem;padding-top:1.5rem;" class="flex flex-wrap justify-between items-center gap-3">
+        <p style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
+        <a href="admin/dashboard.html" style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='0.4'">Admin ↗</a>
       </div>
     </div>
   </footer>
@@ -718,45 +542,35 @@
 
 
   <script>
-    /* ── Mobile nav ── */
     const mobileMenu = document.getElementById('mobile-menu');
     document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
     document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-    /* ── Scroll reveal ── */
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-    /* ── Filter tabs ── */
     const filterBtns   = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
-
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const f = btn.dataset.filter;
         galleryItems.forEach(item => {
-          const cat = item.dataset.category || 'all';
-          item.style.display = (f === 'all' || cat === f) ? '' : 'none';
+          item.style.display = (f === 'all' || item.dataset.category === f) ? '' : 'none';
         });
       });
     });
 
-    /* ── Lightbox ── */
     const lightbox  = document.getElementById('lightbox');
     const lbImg     = document.getElementById('lightbox-img');
     const lbCaption = document.getElementById('lightbox-caption');
-    const lbClose   = document.getElementById('lightbox-close');
-    const lbPrev    = document.getElementById('lb-prev');
-    const lbNext    = document.getElementById('lb-next');
+    let currentIndex = 0;
 
     const clickableItems = () => [...document.querySelectorAll('#gallery-grid .gallery-item[data-src]')]
       .filter(el => el.style.display !== 'none');
-
-    let currentIndex = 0;
 
     function openLightbox(index) {
       const items = clickableItems();
@@ -767,13 +581,11 @@
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-
     function closeLightbox() {
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
       lbImg.src = '';
     }
-
     function navigate(dir) {
       const items = clickableItems();
       currentIndex = (currentIndex + dir + items.length) % items.length;
@@ -791,11 +603,10 @@
       });
     });
 
-    lbClose.addEventListener('click', closeLightbox);
-    lbPrev.addEventListener('click',  () => navigate(-1));
-    lbNext.addEventListener('click',  () => navigate(1));
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+    document.getElementById('lb-next').addEventListener('click', () => navigate(1));
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape')     closeLightbox();

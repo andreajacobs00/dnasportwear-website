@@ -7,10 +7,6 @@
   <meta name="description" content="Browse our rugby teamwear gallery — custom kit for clubs of every level." />
 
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
@@ -37,8 +33,8 @@
       --color-black:    #0a0a0a;
       --color-charcoal: #1a1a1a;
       --color-grey:     #666;
-      --font-display:   'Gotham', sans-serif;
-      --font-body:      'Arial', sans-serif;
+      --font-heading:   'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      --font-body:      Arial, 'Helvetica Neue', Helvetica, sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,17 +57,20 @@
       padding: 0.9rem 0;
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
+
     .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-red); }
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
     .nav-link {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -81,11 +80,12 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: #0a0a0a; }
+
     .btn-primary {
       display: inline-block;
       background: var(--color-red);
-      color: #fff;
-      font-family: var(--font-display);
+      color: #fff !important;
+      font-family: var(--font-heading);
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -137,7 +137,7 @@
       position: absolute;
       right: -0.5rem;
       bottom: -1.5rem;
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: clamp(6rem, 18vw, 14rem);
       color: rgba(232,19,42,0.06);
@@ -146,7 +146,7 @@
       user-select: none;
     }
     .section-label {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
@@ -156,7 +156,7 @@
       margin-bottom: 0.5rem;
     }
     .section-title {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       line-height: 1.0;
@@ -183,7 +183,7 @@
       margin: 0 auto;
     }
     .filter-btn {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 0.75rem;
       letter-spacing: 0.12em;
@@ -244,7 +244,7 @@
     }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 0.78rem;
       letter-spacing: 0.12em;
@@ -294,7 +294,7 @@
       bottom: 1.5rem;
       left: 0; right: 0;
       text-align: center;
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: 0.78rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -335,7 +335,7 @@
       );
     }
     .cta-band h2 {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: clamp(2rem, 5vw, 3rem);
       text-transform: uppercase;
@@ -345,10 +345,8 @@
       color: #fff;
     }
     .cta-band p {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
       opacity: 0.85;
       margin: 0.75rem 0 1.75rem;
       position: relative;
@@ -357,8 +355,8 @@
     .btn-outline {
       display: inline-block;
       border: 2px solid #fff;
-      color: #fff;
-      font-family: var(--font-display);
+      color: #fff !important;
+      font-family: var(--font-heading);
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -368,50 +366,54 @@
       transition: all 0.2s;
       position: relative;
     }
-    .btn-outline:hover { background: #fff; color: var(--color-red); }
+    .btn-outline:hover { background: #fff; color: var(--color-red) !important; }
 
     /* ── FOOTER ── */
     footer {
-      background: #f4f4f4;
-      border-top: 1px solid rgba(0,0,0,0.08);
+      background: #ffffff;
+      border-top: 1px solid #e0e0e0;
+      color: #111111;
     }
     .footer-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .footer-logo span { color: var(--color-red); }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
     .footer-heading {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.7rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #0a0a0a;
-      margin-bottom: 1rem;
+      color: #111111;
+      margin-bottom: 16px;
     }
     .footer-link {
       display: block;
-      color: var(--color-grey);
-      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: #555555;
       text-decoration: none;
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
       transition: color 0.2s;
     }
-    .footer-link:hover { color: #0a0a0a; }
+    .footer-link:hover { color: var(--color-red); }
     .social-link {
-      width: 2rem; height: 2rem;
-      border: 1px solid rgba(0,0,0,0.15);
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(10,10,10,0.55);
+      width: 36px; height: 36px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      color: #555555;
       text-decoration: none;
-      font-size: 0.75rem;
-      transition: all 0.2s;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
     }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
 
@@ -434,7 +436,7 @@
       gap: 0.5rem;
       padding: 3rem 1rem;
       color: rgba(10,10,10,0.3);
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -449,7 +451,9 @@
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-black.png" alt="DNA Sportswear" />
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="sports.html" class="nav-link">Sports</a>
         <a href="ranges.html" class="nav-link">Ranges</a>
@@ -480,7 +484,7 @@
       <span class="section-label">Custom Teamwear</span>
       <h1 class="section-title">Rugby<br><span>Kit Gallery</span></h1>
       <div class="red-line"></div>
-      <p class="text-grey" style="font-size:0.92rem;max-width:480px;line-height:1.7;">
+      <p class="text-grey" style="font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:0.92rem;max-width:480px;line-height:1.7;">
         Every jersey below was built from scratch for a real club. Browse the work,
         then get in touch and we'll design yours.
       </p>
@@ -507,9 +511,7 @@
          data-src="images/Image.jpg">
         <img src="images/Image.jpg" alt="Rugby jersey" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Jerseys</span>Club Jersey
-          </div>
+          <div class="gallery-item-label"><span>Jerseys</span>Club Jersey</div>
         </div>
       </a>
 
@@ -518,9 +520,7 @@
          data-src="images/Image4.jpg">
         <img src="images/Image4.jpg" alt="Full rugby kit" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Full Kit</span>Home & Away Set
-          </div>
+          <div class="gallery-item-label"><span>Full Kit</span>Home & Away Set</div>
         </div>
       </a>
 
@@ -529,9 +529,7 @@
          data-src="images/Image3.jpg">
         <img src="images/Image3.jpg" alt="Rugby match jersey" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Jerseys</span>Match Jersey
-          </div>
+          <div class="gallery-item-label"><span>Jerseys</span>Match Jersey</div>
         </div>
       </a>
 
@@ -540,9 +538,7 @@
          data-src="images/Image.jpg">
         <img src="images/Image.jpg" alt="Rugby training wear" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Training</span>Training Tee
-          </div>
+          <div class="gallery-item-label"><span>Training</span>Training Tee</div>
         </div>
       </a>
 
@@ -551,9 +547,7 @@
          data-src="images/Image.jpg">
         <img src="images/Image.jpg" alt="Rugby shorts" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Shorts</span>Match Shorts
-          </div>
+          <div class="gallery-item-label"><span>Shorts</span>Match Shorts</div>
         </div>
       </a>
 
@@ -562,9 +556,7 @@
          data-src="images/Image3.jpg">
         <img src="images/Image3.jpg" alt="Squad kit" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Full Kit</span>Squad Order
-          </div>
+          <div class="gallery-item-label"><span>Full Kit</span>Squad Order</div>
         </div>
       </a>
 
@@ -573,9 +565,7 @@
          data-src="images/Image.jpg">
         <img src="images/Image.jpg" alt="Rugby jersey" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Jerseys</span>Club Jersey
-          </div>
+          <div class="gallery-item-label"><span>Jerseys</span>Club Jersey</div>
         </div>
       </a>
 
@@ -584,9 +574,7 @@
          data-src="images/Image3.jpg">
         <img src="images/Image3.jpg" alt="Rugby match jersey" loading="lazy" />
         <div class="gallery-item-overlay">
-          <div class="gallery-item-label">
-            <span>Jerseys</span>Match Jersey
-          </div>
+          <div class="gallery-item-label"><span>Jerseys</span>Match Jersey</div>
         </div>
       </a>
 
@@ -608,8 +596,10 @@
       <div class="grid md:grid-cols-4 gap-12">
 
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
-          <p class="text-grey mt-4 mb-6" style="font-size:0.85rem;line-height:1.7;">
+          <a href="index.html" class="footer-logo">
+            <img src="images/logo-black.png" alt="DNA Sportswear" />
+          </a>
+          <p style="color:#555;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:0.85rem;line-height:1.7;margin-top:1rem;margin-bottom:1.5rem;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
           <div class="flex gap-2">
@@ -650,9 +640,9 @@
 
       </div>
 
-      <div class="border-t border-gray-300 mt-12 pt-6 flex flex-wrap justify-between items-center gap-3">
-        <p class="text-grey text-xs">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
-        <a href="admin/dashboard.html" class="text-grey text-xs opacity-40 hover:opacity-80 transition-opacity">Admin ↗</a>
+      <div style="border-top:1px solid #e0e0e0;margin-top:3rem;padding-top:1.5rem;" class="flex flex-wrap justify-between items-center gap-3">
+        <p style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
+        <a href="admin/dashboard.html" style="color:#555;font-family:Arial,sans-serif;font-size:0.75rem;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='0.4'">Admin ↗</a>
       </div>
     </div>
   </footer>
@@ -669,45 +659,35 @@
 
 
   <script>
-    /* ── Mobile nav ── */
     const mobileMenu = document.getElementById('mobile-menu');
     document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
     document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-    /* ── Scroll reveal ── */
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-    /* ── Filter tabs ── */
-    const filterBtns  = document.querySelectorAll('.filter-btn');
+    const filterBtns   = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item, #gallery-grid .upload-placeholder');
-
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const f = btn.dataset.filter;
         galleryItems.forEach(item => {
-          const cat = item.dataset.category || 'all';
-          item.style.display = (f === 'all' || cat === f) ? '' : 'none';
+          item.style.display = (f === 'all' || item.dataset.category === f) ? '' : 'none';
         });
       });
     });
 
-    /* ── Lightbox ── */
     const lightbox  = document.getElementById('lightbox');
     const lbImg     = document.getElementById('lightbox-img');
     const lbCaption = document.getElementById('lightbox-caption');
-    const lbClose   = document.getElementById('lightbox-close');
-    const lbPrev    = document.getElementById('lb-prev');
-    const lbNext    = document.getElementById('lb-next');
+    let currentIndex = 0;
 
     const clickableItems = () => [...document.querySelectorAll('#gallery-grid .gallery-item[data-src]')]
       .filter(el => el.style.display !== 'none');
-
-    let currentIndex = 0;
 
     function openLightbox(index) {
       const items = clickableItems();
@@ -718,13 +698,11 @@
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-
     function closeLightbox() {
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
       lbImg.src = '';
     }
-
     function navigate(dir) {
       const items = clickableItems();
       currentIndex = (currentIndex + dir + items.length) % items.length;
@@ -733,7 +711,7 @@
       lbCaption.textContent = items[currentIndex].dataset.caption || '';
     }
 
-    document.querySelectorAll('#gallery-grid .gallery-item[data-src]').forEach((item) => {
+    document.querySelectorAll('#gallery-grid .gallery-item[data-src]').forEach(item => {
       item.addEventListener('click', e => {
         e.preventDefault();
         const vis = clickableItems();
@@ -742,11 +720,10 @@
       });
     });
 
-    lbClose.addEventListener('click', closeLightbox);
-    lbPrev.addEventListener('click',  () => navigate(-1));
-    lbNext.addEventListener('click',  () => navigate(1));
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+    document.getElementById('lb-next').addEventListener('click', () => navigate(1));
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape')     closeLightbox();
