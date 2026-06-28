@@ -475,6 +475,27 @@
     @media (max-width: 767px) {
       .section-pad { padding: 56px 20px; }
     }
+
+    .whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1); /* makes it white */
+}
   </style>
 </head>
 
@@ -714,6 +735,14 @@
     <p>Fully custom · Made locally · Delivered in 3 weeks</p>
     <a href="contact.html" class="btn-outline">Get a Free Quote</a>
   </div>
+
+  <a 
+  href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!" 
+  target="_blank"
+  class="whatsapp-float"
+>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
 
 
   <!-- ── FOOTER ── -->
