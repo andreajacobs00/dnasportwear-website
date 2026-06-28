@@ -41,16 +41,8 @@
     }
     .max-w { max-width: 1200px; margin: 0 auto; }
 
-    .nav-logo {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
+    .nav-logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 52px; width: auto; display: block; }
 
     .nav-link {
       font-family: var(--font-heading);
@@ -102,23 +94,13 @@
       text-transform: uppercase;
     }
     #dna-menu-toggle {
-      background: none;
-      border: none;
-      color: #0a0a0a;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      background: none; border: none; color: #0a0a0a;
+      font-size: 1.3rem; cursor: pointer; display: flex; align-items: center;
     }
     #dna-menu-close {
-      position: absolute;
-      top: 1.4rem; right: 1.5rem;
-      background: none;
-      border: none;
-      color: #0a0a0a;
-      font-size: 1.5rem;
-      cursor: pointer;
-      line-height: 1;
+      position: absolute; top: 1.4rem; right: 1.5rem;
+      background: none; border: none; color: #0a0a0a;
+      font-size: 1.5rem; cursor: pointer; line-height: 1;
     }
 
     /* ── CONTACT STYLES ── */
@@ -277,21 +259,9 @@
     }
 
     /* ── FOOTER ── */
-    footer {
-      background: #ffffff;
-      border-top: 1px solid #e0e0e0;
-      color: #111111;
-    }
-    .footer-logo {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    .footer-logo img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
+    footer { background: #ffffff; border-top: 1px solid #e0e0e0; color: #111111; }
+    .footer-logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .footer-logo img { height: 32px; width: auto; display: block; }
     .footer-heading {
       font-family: var(--font-heading);
       font-size: 0.72rem;
@@ -311,11 +281,14 @@
       transition: color 0.2s;
     }
     .footer-link:hover { color: var(--color-red); }
+
+    /* ── SOCIAL LINKS ── */
     .social-link {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 36px; height: 36px;
+      background: #ffffff;
       border: 1px solid #ccc;
       border-radius: 50%;
       color: #555555;
@@ -371,60 +344,79 @@
       </div>
 
       <div class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-fname">First Name *</label>
-            <input type="text" id="cf-fname" placeholder="John" />
+        <!-- Netlify Forms: the "netlify" attribute and hidden form-name field are all that's needed.
+             Netlify detects this on deploy and handles submission + email notification. -->
+        <form
+          name="kit-enquiry"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          id="contact-form"
+        >
+          <!-- Hidden field required by Netlify -->
+          <input type="hidden" name="form-name" value="kit-enquiry" />
+
+          <!-- Honeypot spam trap — hidden from real users -->
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-fname">First Name *</label>
+              <input type="text" id="cf-fname" name="first-name" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-lname">Last Name *</label>
+              <input type="text" id="cf-lname" name="last-name" placeholder="Smith" required />
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="cf-lname">Last Name *</label>
-            <input type="text" id="cf-lname" placeholder="Smith" />
+            <label for="cf-email">Email Address *</label>
+            <input type="email" id="cf-email" name="email" placeholder="john@yourclub.co.za" required />
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="cf-email">Email Address *</label>
-          <input type="email" id="cf-email" placeholder="john@yourclub.co.za" />
-        </div>
-
-        <div class="form-group">
-          <label for="cf-phone">Phone Number</label>
-          <input type="tel" id="cf-phone" placeholder="+27 ..." />
-        </div>
-
-        <div class="form-row">
           <div class="form-group">
-            <label for="cf-sport">Sport</label>
-            <select id="cf-sport">
-              <option value="" disabled selected>Select sport</option>
-              <option>Rugby</option>
-              <option>Soccer</option>
-              <option>Athletics</option>
-              <option>Cricket</option>
-              <option>Other</option>
-            </select>
+            <label for="cf-phone">Phone Number</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="+27 ..." />
           </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-sport">Sport</label>
+              <select id="cf-sport" name="sport">
+                <option value="" disabled selected>Select sport</option>
+                <option>Rugby</option>
+                <option>Soccer</option>
+                <option>Athletics</option>
+                <option>Cricket</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-qty">Team Size</label>
+              <select id="cf-qty" name="team-size">
+                <option value="" disabled selected>Select size</option>
+                <option>Under 15</option>
+                <option>15 – 30</option>
+                <option>31 – 60</option>
+                <option>61 – 100</option>
+                <option>100+</option>
+              </select>
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="cf-qty">Team Size</label>
-            <select id="cf-qty">
-              <option value="" disabled selected>Select size</option>
-              <option>Under 15</option>
-              <option>15 – 30</option>
-              <option>31 – 60</option>
-              <option>61 – 100</option>
-              <option>100+</option>
-            </select>
+            <label for="cf-msg">Tell Us About Your Kit</label>
+            <textarea id="cf-msg" name="message" placeholder="Club name, colours, timeline, any special requirements…"></textarea>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="cf-msg">Tell Us About Your Kit</label>
-          <textarea id="cf-msg" placeholder="Club name, colours, timeline, any special requirements…"></textarea>
-        </div>
+          <button type="submit" class="submit-btn">
+            Send Enquiry <i class="fas fa-arrow-right"></i>
+          </button>
 
-        <button class="submit-btn" id="cf-submit" onclick="handleSubmit()">
-          Send Enquiry <i class="fas fa-arrow-right"></i>
-        </button>
+        </form>
 
         <div class="success-msg" id="cf-success">
           <p>✓ &nbsp;Enquiry received — we'll be in touch within 24 hours.</p>
@@ -496,6 +488,7 @@
   <script src="js/main.js"></script>
 
   <script>
+    // ── MOBILE MENU ──
     (function() {
       var menu   = document.getElementById('dna-mobile-menu');
       var opener = document.getElementById('dna-menu-toggle');
@@ -508,32 +501,10 @@
       });
     })();
 
-    function handleSubmit() {
-      const required = ['cf-fname', 'cf-lname', 'cf-email'];
-      let valid = true;
-
-      required.forEach(function(id) {
-        const el = document.getElementById(id);
-        if (!el.value.trim()) {
-          el.classList.add('error');
-          valid = false;
-        } else {
-          el.classList.remove('error');
-        }
-      });
-
-      const emailEl = document.getElementById('cf-email');
-      if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
-        emailEl.classList.add('error');
-        valid = false;
-      }
-
-      if (!valid) return;
-
-      const btn = document.getElementById('cf-submit');
-      btn.disabled = true;
-      btn.innerHTML = 'Sent ✓';
-
+    // ── SHOW SUCCESS MESSAGE ON NETLIFY REDIRECT BACK ──
+    // Netlify redirects to the same page with ?submitted=true after a successful submission
+    if (window.location.search.includes('submitted=true')) {
+      document.getElementById('contact-form').style.display = 'none';
       document.getElementById('cf-success').style.display = 'block';
     }
   </script>
