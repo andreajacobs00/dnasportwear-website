@@ -48,21 +48,18 @@
       line-height: 1.6;
     }
 
-    /* ── TYPOGRAPHY ── */
     h1, h2, h3, h4, h5, h6,
-    .section-title, .section-label, .nav-logo, .footer-logo,
+    .section-title, .section-label, .footer-logo,
     .usp-title, .testimonial-title, .sport-card-label,
     .hero-eyebrow, .btn-primary, .btn-outline, .footer-heading {
       font-family: var(--font-heading);
     }
 
-    /* ── LAYOUT ── */
     .max-w        { max-width: 1200px; margin: 0 auto; }
     .max-w-narrow { max-width: 640px; }
     .section-pad  { padding: 80px 24px; }
     .text-grey    { color: var(--color-muted); }
 
-    /* ── NAV ── */
     #navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -73,14 +70,15 @@
       padding: 0.9rem 0;
     }
     .nav-logo {
-      font-family: var(--font-heading);
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #0a0a0a;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-red); }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
     .nav-link {
       font-family: var(--font-heading);
       font-weight: 600;
@@ -93,7 +91,6 @@
     }
     .nav-link:hover { color: #0a0a0a; }
 
-    /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none;
       position: fixed;
@@ -106,385 +103,131 @@
       gap: 2rem;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu .nav-link {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #0a0a0a;
-    }
+    .mobile-menu .nav-link { font-size: 1.5rem; font-weight: 800; color: #0a0a0a; }
     .menu-toggle {
-      background: none;
-      border: none;
-      color: #0a0a0a;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      background: none; border: none; color: #0a0a0a;
+      font-size: 1.3rem; cursor: pointer; display: flex; align-items: center;
     }
 
-    /* ── BUTTONS ── */
     .btn-primary {
-      display: inline-block;
-      padding: 10px 24px;
-      background: var(--color-red);
-      color: #fff !important;
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.15s;
+      display: inline-block; padding: 10px 24px;
+      background: var(--color-red); color: #fff !important;
+      font-family: var(--font-heading); font-weight: 500; font-size: 0.82rem;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: background 0.2s, transform 0.15s;
     }
     .btn-primary:hover { background: #c4101f; transform: translateY(-1px); }
 
     .btn-outline {
-      display: inline-block;
-      padding: 10px 24px;
-      border: 2px solid var(--color-text);
-      color: var(--color-text) !important;
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block; padding: 10px 24px;
+      border: 2px solid var(--color-text); color: var(--color-text) !important;
+      font-family: var(--font-heading); font-weight: 500; font-size: 0.82rem;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: border-color 0.2s, color 0.2s, transform 0.15s;
     }
     .btn-outline:hover { border-color: var(--color-red); color: var(--color-red) !important; transform: translateY(-1px); }
 
-    /* ── HERO ── */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding-top: 64px;
-      overflow: hidden;
+      position: relative; min-height: 100vh; min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding-top: 64px; overflow: hidden;
     }
-    @media (max-width: 767px) {
-      .hero { min-height: 85vh; min-height: 85dvh; }
-    }
+    @media (max-width: 767px) { .hero { min-height: 85vh; min-height: 85dvh; } }
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('images/HeroBanner2-mobile.png'), url('images/HeroBanner2.png');
-      background-size: cover;
-      background-position: center 30%;
-      background-repeat: no-repeat;
-      filter: brightness(1.05);
+      background-size: cover; background-position: center 30%;
+      background-repeat: no-repeat; filter: brightness(1.05);
     }
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.55);
-    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.55); }
     @media (min-width: 768px) {
-      .hero-bg {
-        background-image: url('images/HeroBanner2-tablet.png'), url('images/HeroBanner2.png');
-        background-position: center 40%;
-        background-attachment: scroll;
-      }
+      .hero-bg { background-image: url('images/HeroBanner2-tablet.png'), url('images/HeroBanner2.png'); background-position: center 40%; background-attachment: scroll; }
     }
     @media (min-width: 1024px) {
-      .hero-bg {
-        background-image: url('images/HeroBanner2.png');
-        background-position: center;
-        background-attachment: fixed;
-      }
+      .hero-bg { background-image: url('images/HeroBanner2.png'); background-position: center; background-attachment: fixed; }
     }
-    @media (min-width: 1440px) {
-      .hero-bg { background-position: center top; }
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 40px 24px;
-      max-width: 800px;
-    }
+    @media (min-width: 1440px) { .hero-bg { background-position: center top; } }
+    .hero-content { position: relative; z-index: 2; padding: 40px 24px; max-width: 800px; }
     .hero-eyebrow {
-      display: inline-block;
-      font-family: var(--font-heading);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--color-red);
-      margin-bottom: 20px;
+      display: inline-block; font-family: var(--font-heading); font-size: 0.75rem;
+      font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-red); margin-bottom: 20px;
     }
     .hero h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      font-weight: 700;
-      line-height: 1.0;
-      color: #111111;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
+      font-family: var(--font-heading); font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700; line-height: 1.0; color: #111111;
+      text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 24px;
     }
     .hero h1 span { color: var(--color-red); }
-    .hero-sub {
-      font-family: var(--font-body);
-      color: rgba(17,17,17,0.85);
-      font-size: 1rem;
-      margin-bottom: 36px;
-      letter-spacing: 0.05em;
-    }
+    .hero-sub { font-family: var(--font-body); color: rgba(17,17,17,0.85); font-size: 1rem; margin-bottom: 36px; letter-spacing: 0.05em; }
 
-    /* ── STATS TICKER ── */
-    .stats-strip {
-      background: var(--color-red);
-      overflow: hidden;
-      padding: 12px 0;
-    }
-    .stats-ticker {
-      display: flex;
-      width: max-content;
-      animation: ticker 28s linear infinite;
-    }
+    .stats-strip { background: var(--color-red); overflow: hidden; padding: 12px 0; }
+    .stats-ticker { display: flex; width: max-content; animation: ticker 28s linear infinite; }
     .stats-ticker-item {
-      font-family: var(--font-heading);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #fff;
-      padding: 0 40px;
-      white-space: nowrap;
+      font-family: var(--font-heading); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #fff; padding: 0 40px; white-space: nowrap;
     }
-    .stats-ticker-item::after {
-      content: '·';
-      margin-left: 40px;
-      opacity: 0.5;
-    }
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    .stats-ticker-item::after { content: '·'; margin-left: 40px; opacity: 0.5; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* ── SECTION LABELS & TITLES ── */
     .section-label {
-      display: inline-block;
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-red);
-      margin-bottom: 12px;
+      display: inline-block; font-family: var(--font-heading); font-size: 0.72rem;
+      font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-red); margin-bottom: 12px;
     }
     .section-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--color-text);
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
+      font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.1; color: var(--color-text);
+      text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 16px;
     }
     .section-title span { color: var(--color-red); }
-    .red-line {
-      width: 40px;
-      height: 3px;
-      background: var(--color-red);
-      margin-bottom: 24px;
-    }
+    .red-line { width: 40px; height: 3px; background: var(--color-red); margin-bottom: 24px; }
     .red-line.center { margin: 0 auto 24px; }
 
-    /* ── INTRO ── */
     .bg-intro { background: #f7f7f7; }
-
-    /* ── USP CARDS ── */
     .usp-card {
-      background: #ffffff;
-      border: 1px solid var(--color-border);
-      border-radius: 4px;
-      padding: 24px 20px;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      background: #ffffff; border: 1px solid var(--color-border); border-radius: 4px;
+      padding: 24px 20px; transition: box-shadow 0.2s, border-color 0.2s;
     }
     .usp-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-color: var(--color-red); }
     .usp-icon { font-size: 1.6rem; display: block; margin-bottom: 10px; }
-    .usp-title {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--color-text);
-      margin-bottom: 6px;
-    }
+    .usp-title { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text); margin-bottom: 6px; }
 
-    /* ── SPORTS GRID ── */
     .bg-sports { background: #efefef; }
-    .sport-card {
-      position: relative;
-      display: block;
-      overflow: hidden;
-      border-radius: 4px;
-      aspect-ratio: 3/4;
-      text-decoration: none;
-    }
-    .sport-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+    .sport-card { position: relative; display: block; overflow: hidden; border-radius: 4px; aspect-ratio: 3/4; text-decoration: none; }
+    .sport-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .sport-card:hover img { transform: scale(1.05); }
-    .sport-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-    }
-    .sport-card-label {
-      position: absolute;
-      bottom: 16px; left: 16px;
-      font-family: var(--font-heading);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-    }
+    .sport-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+    .sport-card-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
 
-    /* ── TESTIMONIALS ── */
     .bg-testimonials { background: #f7f7f7; }
-    .testimonial-card {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-top: 3px solid var(--color-red);
-      border-radius: 4px;
-      padding: 28px 24px;
-    }
-    .testimonial-title {
-      font-family: var(--font-heading);
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--color-text);
-      margin-bottom: 14px;
-    }
-    .testimonial-body {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--color-muted);
-      line-height: 1.7;
-    }
+    .testimonial-card { background: #fff; border: 1px solid var(--color-border); border-top: 3px solid var(--color-red); border-radius: 4px; padding: 28px 24px; }
+    .testimonial-title { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text); margin-bottom: 14px; }
+    .testimonial-body { font-family: var(--font-body); font-size: 0.88rem; color: var(--color-muted); line-height: 1.7; }
 
-    /* ── CTA BAND ── */
-    .cta-band {
-      background: var(--color-red);
-      color: #fff;
-      text-align: center;
-      padding: 80px 24px;
-    }
-    .cta-band h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-    .cta-band p {
-      font-family: var(--font-body);
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 32px;
-      letter-spacing: 0.05em;
-    }
-    .cta-band .btn-outline {
-      border-color: #fff;
-      color: #fff !important;
-    }
-    .cta-band .btn-outline:hover {
-      border-color: #111;
-      color: #111 !important;
-      background: #fff;
-    }
+    .cta-band { background: var(--color-red); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta-band h2 { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+    .cta-band p { font-family: var(--font-body); color: rgba(255,255,255,0.65); margin-bottom: 32px; letter-spacing: 0.05em; }
+    .cta-band .btn-outline { border-color: #fff; color: #fff !important; }
+    .cta-band .btn-outline:hover { border-color: #111; color: #111 !important; background: #fff; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #ffffff;
-      color: #111111;
-      border-top: 1px solid var(--color-border);
-    }
+    footer { background: #ffffff; color: #111111; border-top: 1px solid var(--color-border); }
     footer .text-grey { color: #555555; }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #111111;
-      text-decoration: none;
-    }
-    .footer-logo span { color: var(--color-red); }
-    .footer-heading {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #111111;
-      margin-bottom: 16px;
-    }
-    .footer-link {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: #555555;
-      text-decoration: none;
-      margin-bottom: 8px;
-      transition: color 0.2s;
-    }
+    .footer-logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .footer-logo img { height: 32px; width: auto; display: block; }
+    .footer-heading { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #111111; margin-bottom: 16px; }
+    .footer-link { display: block; font-family: var(--font-body); font-size: 0.88rem; color: #555555; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
     .footer-link:hover { color: var(--color-red); }
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      color: #555555;
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .social-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #ccc; border-radius: 50%; color: #555555; text-decoration: none; font-size: 0.85rem; transition: border-color 0.2s, color 0.2s; }
     .social-link:hover { border-color: var(--color-red); color: var(--color-red); }
 
-    /* ── REVEAL ── */
     [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     [data-reveal].visible { opacity: 1; transform: none; }
 
-    @media (max-width: 767px) {
-      .section-pad { padding: 56px 20px; }
-    }
+    @media (max-width: 767px) { .section-pad { padding: 56px 20px; } }
 
-    .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background-color: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 9999;
-    }
-    .whatsapp-float img {
-      width: 32px;
-      height: 32px;
-      filter: brightness(0) invert(1);
-    }
+    .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background-color: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; }
+    .whatsapp-float img { width: 32px; height: 32px; filter: brightness(0) invert(1); }
   </style>
 </head>
 
@@ -493,7 +236,9 @@
   <!-- ── NAV ── -->
   <nav id="navbar">
     <div class="max-w flex items-center justify-between px-6">
-      <a href="index.html" class="nav-logo">DNA<span>SPORTSWEAR</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-black.png" alt="DNA Sportswear" />
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="sports.html"  class="nav-link">Sports</a>
         <a href="ranges.html"  class="nav-link">Ranges</a>
@@ -552,7 +297,6 @@
       <span class="stats-ticker-item">5-Star Reviews</span>
       <span class="stats-ticker-item">Performance Fabrics</span>
       <span class="stats-ticker-item">Grassroots to Elite</span>
-      <!-- Duplicated for seamless loop -->
       <span class="stats-ticker-item">Made Locally</span>
       <span class="stats-ticker-item">3-Week Turnaround</span>
       <span class="stats-ticker-item">Fully Custom</span>
@@ -565,10 +309,9 @@
   </div>
 
 
-  <!-- ── INTRO ── */
+  <!-- ── INTRO ── -->
   <section class="section-pad bg-intro">
     <div class="max-w grid md:grid-cols-2 gap-12 items-center px-6">
-
       <div data-reveal>
         <span class="section-label">Who We Are</span>
         <h2 class="section-title">Kit That Performs.<br><span>Service That Delivers.</span></h2>
@@ -587,7 +330,6 @@
           <a href="contact.html" class="btn-outline">How We Work</a>
         </div>
       </div>
-
       <div class="grid grid-cols-2 gap-4" data-reveal>
         <div class="usp-card">
           <span class="usp-icon">🇿🇦</span>
@@ -617,7 +359,6 @@
   <!-- ── SPORTS GRID ── -->
   <section id="sports" class="section-pad bg-sports">
     <div class="max-w px-6">
-
       <div class="text-center mb-12" data-reveal>
         <span class="section-label">What We Cover</span>
         <h2 class="section-title">Custom Kit For<br><span>Every Sport</span></h2>
@@ -627,36 +368,27 @@
           customisable and delivered in three weeks or less.
         </p>
       </div>
-
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3" data-reveal>
-
         <a href="rugby.html" class="sport-card">
           <img src="images/Image4.jpg" alt="Rugby teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Rugby</div>
         </a>
-
         <a href="soccer.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600&auto=format&fit=crop&q=80"
-               alt="Soccer teamwear" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600&auto=format&fit=crop&q=80" alt="Soccer teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Soccer</div>
         </a>
-
         <a href="athletics.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1574271143515-5cddf8da19be?w=600&auto=format&fit=crop&q=80"
-               alt="Athletics teamwear" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1574271143515-5cddf8da19be?w=600&auto=format&fit=crop&q=80" alt="Athletics teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Athletics</div>
         </a>
-
         <a href="cricket.html" class="sport-card">
-          <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&auto=format&fit=crop&q=80"
-               alt="Cricket teamwear" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&auto=format&fit=crop&q=80" alt="Cricket teamwear" loading="lazy" />
           <div class="sport-card-overlay"></div>
           <div class="sport-card-label">Cricket</div>
         </a>
-
       </div>
     </div>
   </section>
@@ -665,15 +397,12 @@
   <!-- ── TESTIMONIALS ── -->
   <section class="section-pad bg-testimonials">
     <div class="max-w px-6">
-
       <div class="text-center mb-12" data-reveal>
         <span class="section-label">Social Proof</span>
         <h2 class="section-title">Trusted By Teams<br><span>Across the Country</span></h2>
         <div class="red-line center"></div>
       </div>
-
       <div class="grid md:grid-cols-3 gap-6" data-reveal>
-
         <div class="testimonial-card">
           <div class="testimonial-title">Exceptional Service & Speed</div>
           <p class="testimonial-body">
@@ -686,7 +415,6 @@
             — Hands & Heart RFC, Cape Town
           </p>
         </div>
-
         <div class="testimonial-card">
           <div class="testimonial-title">Going Beyond the Call of Duty</div>
           <p class="testimonial-body">
@@ -699,7 +427,6 @@
             — Kuilsrivier RFC, Cape Town
           </p>
         </div>
-
         <div class="testimonial-card">
           <div class="testimonial-title">Premium Quality That Stands Out</div>
           <p class="testimonial-body">
@@ -712,7 +439,6 @@
             — Palm Park Primary, Cape Town
           </p>
         </div>
-
       </div>
     </div>
   </section>
@@ -725,11 +451,7 @@
     <a href="contact.html" class="btn-outline">Get a Free Quote</a>
   </div>
 
-  <a
-    href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!"
-    target="_blank"
-    class="whatsapp-float"
-  >
+  <a href="https://wa.me/+27696096529?text=Hello%20DNA%20Sportswear!" target="_blank" class="whatsapp-float">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 
@@ -738,9 +460,10 @@
   <footer>
     <div class="max-w px-6 py-16">
       <div class="grid md:grid-cols-4 gap-12">
-
         <div>
-          <a href="index.html" class="footer-logo">DNA<span>SPORTSWEAR</span></a>
+          <a href="index.html" class="footer-logo">
+            <img src="images/logo-black.png" alt="DNA Sportswear" />
+          </a>
           <p class="text-grey mt-4 mb-6" style="font-size:0.85rem; line-height:1.7;">
             Premium custom teamwear for every sport. Made with purpose, delivered fast.
           </p>
@@ -749,7 +472,6 @@
             <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           </div>
         </div>
-
         <div>
           <div class="footer-heading">Sports</div>
           <a href="rugby.html"     class="footer-link">Rugby</a>
@@ -757,14 +479,12 @@
           <a href="athletics.html" class="footer-link">Athletics</a>
           <a href="cricket.html"   class="footer-link">Cricket</a>
         </div>
-
         <div>
           <div class="footer-heading">Company</div>
           <a href="about.html"   class="footer-link">Our Story</a>
           <a href="process.html" class="footer-link">How We Work</a>
           <a href="contact.html" class="footer-link">Contact Us</a>
         </div>
-
         <div>
           <div class="footer-heading">Customer Service</div>
           <a href="footer/size-guide.html"  class="footer-link">Size Guide</a>
@@ -779,13 +499,9 @@
             <i class="fas fa-envelope mr-2" style="color:var(--color-red);"></i>info@dnasportswear.co.za
           </a>
         </div>
-
       </div>
-
       <div class="border-t mt-12 pt-6 flex flex-wrap justify-between items-center gap-3" style="border-color:#ddd;">
-        <p class="text-grey text-xs">
-          © 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa
-        </p>
+        <p class="text-grey text-xs">© 2026 DNA SPORTSWEAR (PTY) LTD &nbsp;·&nbsp; Cape Town, South Africa</p>
         <a href="admin/dashboard.html" class="text-grey text-xs" style="opacity:0.5;">Admin ↗</a>
       </div>
     </div>
@@ -793,12 +509,10 @@
 
 
   <script>
-    /* Mobile nav */
     const mobileMenu = document.getElementById('mobile-menu');
     document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
     document.getElementById('menu-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-    /* Scroll reveal */
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
